@@ -1,7 +1,7 @@
 {
-  "name": "full-stack-project",
+  "name": "final-project-lfz",
   "version": "1.0.0",
-  "description": "A Full Stack Node.js &amp; React app.",
+  "description": "A web app for curious people who want to learn online, while staying connected with local course-mates who plan field trips.",
   "main": "server/index.js",
   "scripts": {
     "dev": "npm-run-all --silent --parallel dev:*",
