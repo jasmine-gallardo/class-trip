@@ -1,1 +1,19 @@
 /* styles */
+.contain {
+  width: 100%;
+  height: 100%;
+}
+
+header {
+  width: 100%;
+  height: 5rem;
+}
+
+.component-body {
+  width: 100%;
+  height: 41rem;
+}
+
+.plan-trips-body {
+  background-color: #EE6963;
+}
