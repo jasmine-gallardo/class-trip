@@ -1,1 +1,23 @@
 /* styles */
+
+/* @import url(bootstrap.css); */
+@import url(bootstrap-responsive.css);
+
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.row {
+  padding: 15px 0;
+}
+
+.container {
+  height: 1024px;
+  width:100%;
+}
+
+
+footer {
+  padding: 20px 0;
+}
