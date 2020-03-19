@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Full Stack Project | LearningFuze</title>
+  <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="/main.js"></script>
+
+  <div class='container'>
+
+    <div class='row bg-dark'>
+      <div class='col-md-6 text-center text-light p-4'>
+        <h2>FIND FIELD TRIPS</h2>
+      </div>
+    </div>
+
+    <div class='row p-4'>
+      <form class="form-inline my-2 my-lg-0 mx-auto">
+        <label>Search by category/location</label>
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      </form>
+    </div>
+
+    <div class='row p-3'>
+      <div class='col-md-6 text-center'>
+        <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 200px">
+          <iframe src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
+            style="border:0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class='row' style="height: 270px">
+      <div class='col-md-8'>
+        <div class='pb-2'>
+          <h4>Field Trips Near You</h4>
+        </div>
+        <div class='row col-md-8 bg-warning mx-auto'>
+          <div class='pr-4'>
+            <h5>Trivia Night/Study Group</h5>
+            <p>Location: The Den Cafe</p>
+          </div>
+          <div class='pt-2'>
+            <button class='btn btn-danger'>RSVP</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class='row text-center'>
+      <div class='w-100'>
+        <footer class="top-bar bg-dark d-flex justify-content-between p-3">
+          <i class=" d-flex fa fa-home fa-3x text-light"></i>
+          <i class="fa fa-search fa-3x text-light"></i>
+          <i class="fa fa-clipboard fa-3x text-light"></i>
+          <i class="fa fa-user-times fa-3x text-light"></i>
+        </footer>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
