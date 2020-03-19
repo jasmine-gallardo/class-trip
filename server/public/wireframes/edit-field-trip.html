@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+  <!-- <link rel="stylesheet" href="../styles.css"> -->
+  <title>Edit Field Trip</title>
+  <style>
+    .contain {
+    width: 100%;
+    height: 100%;
+    }
+
+    header {
+      width: 100%;
+      height: 5rem;
+    }
+
+    .component-body {
+      width: 100%;
+      height: 41rem;
+    }
+
+    .edit-trips-body {
+      background-color: #FFBC11;
+    }
+
+    .bradius {
+      border: 1px;
+      border-radius: 20px !important;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="contain">
+    <header class="bg-secondary d-flex justify-content-center ">
+      <p class="m-auto text-light h4">Trivia Night/Study Group</p>
+    </header>
+
+    <div class="component-body edit-trips-body p-4 pt-5">
+      <div class="input-group-lg mb-5">
+        <input type="text" class="form-control bradius" placeholder="Name your field trip">
+      </div>
+      <div class="input-group-lg mb-5">
+        <input type="text" class="form-control bradius" placeholder="Add a location">
+      </div>
+      <div class="d-flex justify-content-between input-group-lg mb-5">
+        <input type="text" class="form-control w-25 bradius" placeholder="Date">
+        <input type="text" class="form-control w-25 bradius" placeholder="Time">
+        <div class="input-group-prepend">
+          <label for="am">AM</label>
+          <div class="input-group-text bradius">
+            <input type="checkbox" id="am">
+          </div>
+        </div>
+        <div class="input-group-prepend">
+          <label for="pm">PM</label>
+          <div class="input-group-text bradius">
+            <input type="checkbox" id="pm">
+          </div>
+        </div>
+      </div>
+      <div class="input-group-lg mb-5">
+        <textarea class="form-control bradius" aria-label="With textarea" placeholder="Describe your field trip"></textarea>
+      </div>
+      <div class="text-center">
+        <button class="btn-lg btn-dark bradius">Update</button>
+      </div>
+    </div>
+  </div>
+  <footer class="top-bar bg-secondary d-flex justify-content-between p-3">
+    <i class=" d-flex fas fa-home fa-3x text-light"></i>
+    <i class="fas fa-search fa-3x text-light"></i>
+    <i class="fas fa-clipboard fa-3x text-light"></i>
+    <i class="fas fa-user-times fa-3x text-light"></i>
+  </footer>
+  </div>
+</body>
+
+</html>
