@@ -1,4 +1,5 @@
 import React from 'react';
+import User from './user';
 
 export default class UserList extends React.Component {
   constructor(props) {
@@ -22,13 +23,22 @@ export default class UserList extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="h-75 d-flex flex-wrap justify-content-center">
-          <div className="w-50 m-auto p-2 d-flex justify-content-center justify-content-between">
-            <i className="fas fa-user fa-3x"></i>
-            <p className="h2">Log In</p>
-          </div>
+      <div className="h-75 d-flex flex-wrap justify-content-center">
+        <div className="w-50 m-auto p-2 d-flex justify-content-center justify-content-between">
+          <i className="fas fa-user fa-3x"></i>
+          <p className="h2">Log In</p>
         </div>
+        {
+          this.state.users.map(user => {
+            return (
+              <User
+                key={user.userId}
+                name={user.name}
+                setView={this.props.setView}
+              />
+            );
+          })
+        }
       </div>
     );
   }
