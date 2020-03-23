@@ -61,7 +61,7 @@ app.get('/api/fieldTrips/:fieldTripId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// PATCH - Edit Field Trip
+// PUT - Edit Field Trip
 app.put('/api/fieldTrips/:fieldTripId', (req, res, next) => {
   const fT = req.body;
   const fTId = req.params.fieldTripId;
