@@ -7,9 +7,10 @@ export default class App extends React.Component {
     this.state = {
       view: { name: 'users' }
     };
+    this.setView = this.setView.bind(this);
   }
 
-  setView() {
+  setView(name) {
     this.setState({
       view: { name }
     });
