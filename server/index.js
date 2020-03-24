@@ -53,6 +53,35 @@ app.get('/api/fieldTrips/:fieldTripId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.delete('/api/fieldTrips/:fieldTripId', (req, res, next) => {
+  const { fieldTripId } = req.params;
+  if (!parseInt(fieldTripId, 10)) {
+    return res.status(400).json({
+      error: '"fieldTripId" must be a positive integer'
+    });
+  }
+
+  const sql = `
+    delete from "field_trips"
+    where "fieldTripId" = $1
+    returning *
+  `;
+
+  const values = [fieldTripId];
+
+  db.query(sql, values)
+    .then(result => {
+      if (!result.rows[0]) {
+        return res.status(400).json({
+          error: `Cannot find field trip with ${fieldTripId}`
+        });
+      } else {
+        return res.sendStatus(204);
+      }
+    })
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
