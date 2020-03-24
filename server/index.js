@@ -55,6 +55,32 @@ app.get('/api/fieldTrips/:fieldTripId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// DELETE - Delete Field Trip
+app.delete('/api/fieldTrips/:fieldTripId', (req, res, next) => {
+  const { fieldTripId } = req.params;
+  if (!parseInt(fieldTripId, 10)) {
+    return res.status(400).json({
+      error: '"fieldTripId" must be a positive integer'
+    });
+  }
+
+  const sql = `
+    delete from "field_trips"
+    where "fieldTripId" = $1
+    returning *
+  `;
+
+  const values = [fieldTripId];
+
+  db.query(sql, values)
+    .then(result => {
+      if (!result.rows[0]) {
+        return res.status(400).json({
+          error: `Cannot find field trip with ${fieldTripId}`
+        });
+      } else {
+        return res.sendStatus(204);
+
 // PUT - Edit Field Trip
 app.put('/api/fieldTrips/:fieldTripId', (req, res, next) => {
   const fT = req.body;
@@ -85,6 +111,7 @@ app.put('/api/fieldTrips/:fieldTripId', (req, res, next) => {
         });
       } else {
         res.status(200).json(theFT);
+
       }
     })
     .catch(err => next(err));
