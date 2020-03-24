@@ -1,10 +1,6 @@
 /* styles */
 
-.row {
-  padding: 15px 0;
-}
-
-/* Keep */
+/* App */
 header {
   width: 100%;
   height: 5rem;
@@ -13,4 +9,15 @@ header {
 .component-body {
   width: 100%;
   height: 41rem;
+}
+
+/* Home */
+.courses {
+  background-color: #FFD37B;
+  border-radius: 10px;
+}
+
+.field-trips {
+  background-color: #EE6963;
+  border-radius: 10px;
 }
