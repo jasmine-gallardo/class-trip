@@ -13,6 +13,7 @@ app.use(sessionMiddleware);
 
 app.use(express.json());
 
+// GET - Pick User
 app.get('/api/users', (req, res, next) => {
   const sql = `
     select "userId",
@@ -24,6 +25,7 @@ app.get('/api/users', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// GET - View Field Trip Details
 app.get('/api/fieldTrips/:fieldTripId', (req, res, next) => {
   const { fieldTripId } = req.params;
   if (!parseInt(fieldTripId, 10)) {
@@ -53,6 +55,7 @@ app.get('/api/fieldTrips/:fieldTripId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// DELETE - Delete Field Trip
 app.delete('/api/fieldTrips/:fieldTripId', (req, res, next) => {
   const { fieldTripId } = req.params;
   if (!parseInt(fieldTripId, 10)) {
@@ -77,6 +80,38 @@ app.delete('/api/fieldTrips/:fieldTripId', (req, res, next) => {
         });
       } else {
         return res.sendStatus(204);
+
+// PUT - Edit Field Trip
+app.put('/api/fieldTrips/:fieldTripId', (req, res, next) => {
+  const fT = req.body;
+  const fTId = req.params.fieldTripId;
+  if (!parseInt(fTId, 10) || !fT.fieldTripName || !fT.address || !fT.city || !fT.date || !fT.time || !fT.description) {
+    return res.status(400).json({
+      error: 'Invalid field trip'
+    });
+  }
+  const sql = `
+  update  "field_trips"
+    set   "fieldTripName" = $1,
+          "address" = $2,
+          "city" = $3,
+          "date" = $4,
+          "time" = $5,
+          "description" = $6
+  where   "fieldTripId" = $7
+  returning *
+`;
+  const values = [fT.fieldTripName, fT.address, fT.city, fT.date, fT.time, fT.description, fTId];
+  db.query(sql, values)
+    .then(result => {
+      const theFT = result.rows[0];
+      if (!theFT) {
+        res.status(404).json({
+          error: 'Field trip does not exist'
+        });
+      } else {
+        res.status(200).json(theFT);
+
       }
     })
     .catch(err => next(err));
