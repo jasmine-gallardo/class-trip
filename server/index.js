@@ -80,6 +80,10 @@ app.delete('/api/fieldTrips/:fieldTripId', (req, res, next) => {
         });
       } else {
         return res.sendStatus(204);
+      }
+    })
+    .catch(err => next(err));
+});
 
 // PUT - Edit Field Trip
 app.put('/api/fieldTrips/:fieldTripId', (req, res, next) => {
