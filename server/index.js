@@ -199,6 +199,19 @@ app.get('/api/users_courses/:userId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/lessons/:lessonId', (req, res, next) => {
+  const lessonId = req.params.lessonId;
+  const sql = `
+    select *
+      from "lessons"
+    where "lessonId" = $1
+  `;
+  const values = [lessonId];
+  db.query(sql, values)
+    .then(result => res.status(200).json(result.rows[0]))
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
