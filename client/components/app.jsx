@@ -1,6 +1,7 @@
 import React from 'react';
 import UserList from './user-list';
 import Home from './home';
+import UserCourses from './user-courses';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -27,6 +28,9 @@ export default class App extends React.Component {
         break;
       case 'loggedIn': view =
         <Home setView={this.setView} userName={this.state.user.userName}/>;
+        break;
+      case 'myCourses': view =
+        <UserCourses setView={this.setView} />;
         break;
     }
     return (
