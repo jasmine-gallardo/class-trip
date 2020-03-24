@@ -80,6 +80,10 @@ app.delete('/api/fieldTrips/:fieldTripId', (req, res, next) => {
         });
       } else {
         return res.sendStatus(204);
+      }
+    })
+    .catch(err => next(err));
+});
 
 // PUT - Edit Field Trip
 app.put('/api/fieldTrips/:fieldTripId', (req, res, next) => {
@@ -192,6 +196,19 @@ app.get('/api/users_courses/:userId', (req, res, next) => {
         return res.json(result.rows);
       }
     })
+    .catch(err => next(err));
+});
+
+app.get('/api/lessons/:lessonId', (req, res, next) => {
+  const lessonId = req.params.lessonId;
+  const sql = `
+    select *
+      from "lessons"
+    where "lessonId" = $1
+  `;
+  const values = [lessonId];
+  db.query(sql, values)
+    .then(result => res.status(200).json(result.rows[0]))
     .catch(err => next(err));
 });
 
