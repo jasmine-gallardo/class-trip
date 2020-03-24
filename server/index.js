@@ -117,6 +117,84 @@ app.put('/api/fieldTrips/:fieldTripId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// GET - View User's List of Field Trips
+app.get('/api/users_field_trips/:userId', (req, res, next) => {
+  if (!parseInt(req.params.userId, 10)) {
+    return res.status(400).json({
+      error: "'userId' must be a positive integer"
+    });
+  }
+  const sql = `
+  select "field_trips"."fieldTripName",
+    "field_trips"."address",
+    "field_trips"."city",
+    "field_trips"."date",
+    "field_trips"."time",
+    "users_field_trips"."userId"
+    from "field_trips"
+    join "users_field_trips" using("fieldTripId")
+    where "users_field_trips"."userId" = $1
+  `;
+  db.query(sql, [req.params.userId])
+    .then(result => {
+      if (!result.rows[0]) {
+        return res.status(404).json({
+          error: `No field trips found under userId ${req.params.userId}`
+        });
+      } else {
+        return res.json(result.rows);
+      }
+    })
+    .catch(err => next(err));
+});
+
+// GET - View Course Details
+app.get('/api/courses/:courseId', (req, res, next) => {
+  const sql = `
+  select "lessons"."name"
+  from "lessons"
+  join "courses" using("courseId")
+  where "courses"."courseId" = $1
+  `;
+  db.query(sql, [req.params.courseId])
+    .then(result => {
+      if (!result.rows[0]) {
+        return res.status(404).json({
+          error: `User ${req.params.courseId} not found`
+        });
+      } else {
+        return res.json(result.rows);
+      }
+    })
+    .catch(err => next(err));
+});
+// GET - View User's List of Courses
+app.get('/api/users_courses/:userId', (req, res, next) => {
+  if (!parseInt(req.params.userId, 10)) {
+    return res.status(400).json({
+      error: "'userId' must be a positive integer"
+    });
+  }
+  const sql = `
+  select "courses"."name",
+  "users_courses"."userId"
+  from "courses"
+  join "users_courses" using("courseId")
+  where "users_courses"."userId" = $1
+  `;
+  db.query(sql, [req.params.userId])
+    .then(result => {
+      if (!result.rows[0]) {
+        return res.status(404).json({
+          error: `User ${req.params.userId} not found`
+        });
+      } else {
+        return res.json(result.rows);
+      }
+    })
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
