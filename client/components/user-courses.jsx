@@ -10,7 +10,7 @@ export default class UserCourses extends React.Component {
   }
 
   componentDidMount() {
-    this.getCourses(1); // need to pass in userId via props later
+    this.getCourses(this.props.userId);
   }
 
   getCourses(userId) {
@@ -24,7 +24,7 @@ export default class UserCourses extends React.Component {
     return (
       <div className="h-75 d-flex flex-wrap justify-content-center">
         <div className="w-50 m-auto p-2 d-flex justify-content-center justify-content-between">
-          <i className="fas fa-user fa-3x"></i>
+          <i className="far fa-bookmark fa-3x"></i>
           <p className="h2">Courses</p>
         </div>
         {
@@ -48,7 +48,7 @@ function Course(props) {
   return (
     <div className="w-75 d-flex justify-content-center">
       <button
-        onClick={() => props.setView('loggedIn', courseName)}
+        onClick={() => props.setView('myLessons', courseName)}
         className="w-100 btn-lrg btn-warning text-light h2 mb-3 rounded">
         {courseName}
       </button>

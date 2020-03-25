@@ -2,6 +2,7 @@ import React from 'react';
 
 export default function Home(props) {
   const userName = props.userName;
+  const userId = props.userId;
   return (
     <div>
       <div className="w-50 m-auto p-2 d-flex justify-content-center justify-content-between">
@@ -19,7 +20,7 @@ export default function Home(props) {
       <div className="text-center">
         <div>
           <button
-            onClick={() => props.setView('myCourses', userName)}
+            onClick={() => props.setView('myCourses', userName, userId)}
             className="w-75 btn-lg btn-dark m-2" type="submit">My Courses</button>
         </div>
         <div>
