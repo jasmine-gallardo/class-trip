@@ -8,8 +8,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: { name: 'users' },
-      user: { userName: '' },
-      userId: { userId: '' }
+      user: { userName: '', userId: null }
     };
     this.setView = this.setView.bind(this);
   }
@@ -17,8 +16,7 @@ export default class App extends React.Component {
   setView(name, userName, userId) {
     this.setState({
       view: { name },
-      user: { userName },
-      userId: { userId }
+      user: { userName, userId }
     });
   }
 
@@ -29,10 +27,10 @@ export default class App extends React.Component {
         <UserList setView={this.setView} />;
         break;
       case 'loggedIn': view =
-        <Home setView={this.setView} userName={this.state.user.userName} userId={this.state.userId.userId}/>;
+        <Home setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId}/>;
         break;
       case 'myCourses': view =
-        <UserCourses setView={this.setView} userId={this.state.userId.userId}/>;
+        <UserCourses setView={this.setView} userId={this.state.user.userId}/>;
         break;
     }
     return (

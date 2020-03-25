@@ -46,10 +46,10 @@ export default class UserCourses extends React.Component {
 function Course(props) {
   const courseName = props.name;
   return (
-    <div className="w-75 d-flex justify-content-center">
+    <div className="w-100 d-flex justify-content-center">
       <button
         onClick={() => props.setView('myLessons', courseName)}
-        className="w-100 btn-lrg btn-warning text-light h2 mb-3 rounded">
+        className="w-100 btn-lrg btn-warning text-light h4 mb-3 rounded">
         {courseName}
       </button>
     </div>
