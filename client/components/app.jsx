@@ -2,6 +2,7 @@ import React from 'react';
 import UserList from './user-list';
 import Home from './home';
 import UserCourses from './user-courses';
+// import SearchCourses from './search-courses'
 
 export default class App extends React.Component {
   constructor(props) {
