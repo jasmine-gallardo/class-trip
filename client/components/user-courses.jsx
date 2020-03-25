@@ -49,7 +49,7 @@ function Course(props) {
     <div className="w-100 d-flex justify-content-center">
       <button
         onClick={() => props.setView('myLessons', courseName)}
-        className="w-100 btn-lrg btn-warning text-light h4 mb-3 rounded">
+        className="w-100 btn-block btn-warning text-light h4 mb-3 rounded">
         {courseName}
       </button>
     </div>
