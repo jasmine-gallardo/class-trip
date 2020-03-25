@@ -199,6 +199,7 @@ app.get('/api/users_courses/:userId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// GET - View Lessons
 app.get('/api/lessons/:lessonId', (req, res, next) => {
   const lessonId = req.params.lessonId;
   const sql = `
@@ -209,6 +210,53 @@ app.get('/api/lessons/:lessonId', (req, res, next) => {
   const values = [lessonId];
   db.query(sql, values)
     .then(result => res.status(200).json(result.rows[0]))
+    .catch(err => next(err));
+});
+
+// GET - Search Categories
+app.get('/api/categories', (req, res, next) => {
+  const categoryName = req.body.categoryName;
+  const sql = `
+select "categoryId",
+       "categoryName"
+from   "categories"
+where  "categoryName" ilike $1 || '%'
+`;
+  const value = [categoryName];
+  db.query(sql, value)
+    .then(result => {
+      if (!result.rows[0]) {
+        return res.status(404).json({
+          error: 'Category not found'
+        });
+      } else {
+        return res.json(result.rows);
+      }
+    })
+    .catch(err => next(err));
+});
+
+// GET - Search Courses by Category
+app.get('/api/courses', (req, res, next) => {
+  const categoryName = req.body.categoryName;
+  const sql = `
+select  "courses"."name",
+        "categories"."categoryName"
+from    "courses"
+join    "categories" using ("categoryId")
+where   "categoryName" = $1
+`;
+  const value = [categoryName];
+  db.query(sql, value)
+    .then(result => {
+      if (!result.rows[0]) {
+        return res.status(404).json({
+          error: 'Courses not found'
+        });
+      } else {
+        return res.json(result.rows);
+      }
+    })
     .catch(err => next(err));
 });
 
