@@ -181,6 +181,7 @@ app.get('/api/users_courses/:userId', (req, res, next) => {
   }
   const sql = `
   select "courses"."name",
+  "courses"."courseId",
   "users_courses"."userId"
   from "courses"
   join "users_courses" using("courseId")
