@@ -21,28 +21,19 @@ ALTER TABLE ONLY public.lessons DROP CONSTRAINT lessons_pk;
 ALTER TABLE ONLY public.field_trips DROP CONSTRAINT field_trips_pk;
 ALTER TABLE ONLY public.courses DROP CONSTRAINT courses_pk;
 ALTER TABLE ONLY public.categories DROP CONSTRAINT categories_pk;
-ALTER TABLE public.users_field_trips ALTER COLUMN "userId" DROP DEFAULT;
-ALTER TABLE public.users_field_trips ALTER COLUMN "fieldTripId" DROP DEFAULT;
-ALTER TABLE public.users_courses ALTER COLUMN "userId" DROP DEFAULT;
-ALTER TABLE public.users_courses ALTER COLUMN "courseId" DROP DEFAULT;
 ALTER TABLE public.users ALTER COLUMN "userId" DROP DEFAULT;
-ALTER TABLE public.lessons ALTER COLUMN "courseId" DROP DEFAULT;
 ALTER TABLE public.lessons ALTER COLUMN "lessonId" DROP DEFAULT;
 ALTER TABLE public.field_trips ALTER COLUMN "fieldTripId" DROP DEFAULT;
 ALTER TABLE public.courses ALTER COLUMN "courseId" DROP DEFAULT;
 ALTER TABLE public.categories ALTER COLUMN "categoryId" DROP DEFAULT;
 DROP SEQUENCE public."users_userId_seq";
-DROP SEQUENCE public."users_field_trips_userId_seq";
-DROP SEQUENCE public."users_field_trips_fieldTripId_seq";
 DROP TABLE public.users_field_trips;
-DROP SEQUENCE public."users_courses_userId_seq";
-DROP SEQUENCE public."users_courses_courseId_seq";
 DROP TABLE public.users_courses;
 DROP TABLE public.users;
 DROP SEQUENCE public."lessons_lessonId_seq";
-DROP SEQUENCE public."lessons_courseId_seq";
 DROP TABLE public.lessons;
 DROP SEQUENCE public."field_trips_fieldTripId_seq";
+DROP TABLE public.field_trips_categories;
 DROP TABLE public.field_trips;
 DROP SEQUENCE public."courses_courseId_seq";
 DROP TABLE public.courses;
@@ -119,7 +110,7 @@ ALTER SEQUENCE public."categories_categoryId_seq" OWNED BY public.categories."ca
 CREATE TABLE public.courses (
     "courseId" integer NOT NULL,
     name text NOT NULL,
-    "categoryId" text NOT NULL,
+    "categoryId" integer NOT NULL,
     description text NOT NULL
 );
 
@@ -155,8 +146,17 @@ CREATE TABLE public.field_trips (
     address text NOT NULL,
     city text NOT NULL,
     date date NOT NULL,
-    "time" time with time zone NOT NULL,
-    categoryid text NOT NULL
+    "time" time with time zone NOT NULL
+);
+
+
+--
+-- Name: field_trips_categories; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.field_trips_categories (
+    "fieldTripId" integer NOT NULL,
+    "categoryId" integer NOT NULL
 );
 
 
@@ -191,26 +191,6 @@ CREATE TABLE public.lessons (
     heading text NOT NULL,
     body text NOT NULL
 );
-
-
---
--- Name: lessons_courseId_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public."lessons_courseId_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: lessons_courseId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public."lessons_courseId_seq" OWNED BY public.lessons."courseId";
 
 
 --
@@ -254,46 +234,6 @@ CREATE TABLE public.users_courses (
 
 
 --
--- Name: users_courses_courseId_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public."users_courses_courseId_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: users_courses_courseId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public."users_courses_courseId_seq" OWNED BY public.users_courses."courseId";
-
-
---
--- Name: users_courses_userId_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public."users_courses_userId_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: users_courses_userId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public."users_courses_userId_seq" OWNED BY public.users_courses."userId";
-
-
---
 -- Name: users_field_trips; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -301,46 +241,6 @@ CREATE TABLE public.users_field_trips (
     "fieldTripId" integer NOT NULL,
     "userId" integer NOT NULL
 );
-
-
---
--- Name: users_field_trips_fieldTripId_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public."users_field_trips_fieldTripId_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: users_field_trips_fieldTripId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public."users_field_trips_fieldTripId_seq" OWNED BY public.users_field_trips."fieldTripId";
-
-
---
--- Name: users_field_trips_userId_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public."users_field_trips_userId_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: users_field_trips_userId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public."users_field_trips_userId_seq" OWNED BY public.users_field_trips."userId";
 
 
 --
@@ -392,45 +292,10 @@ ALTER TABLE ONLY public.lessons ALTER COLUMN "lessonId" SET DEFAULT nextval('pub
 
 
 --
--- Name: lessons courseId; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.lessons ALTER COLUMN "courseId" SET DEFAULT nextval('public."lessons_courseId_seq"'::regclass);
-
-
---
 -- Name: users userId; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN "userId" SET DEFAULT nextval('public."users_userId_seq"'::regclass);
-
-
---
--- Name: users_courses courseId; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users_courses ALTER COLUMN "courseId" SET DEFAULT nextval('public."users_courses_courseId_seq"'::regclass);
-
-
---
--- Name: users_courses userId; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users_courses ALTER COLUMN "userId" SET DEFAULT nextval('public."users_courses_userId_seq"'::regclass);
-
-
---
--- Name: users_field_trips fieldTripId; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users_field_trips ALTER COLUMN "fieldTripId" SET DEFAULT nextval('public."users_field_trips_fieldTripId_seq"'::regclass);
-
-
---
--- Name: users_field_trips userId; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users_field_trips ALTER COLUMN "userId" SET DEFAULT nextval('public."users_field_trips_userId_seq"'::regclass);
 
 
 --
@@ -463,9 +328,19 @@ COPY public.courses ("courseId", name, "categoryId", description) FROM stdin;
 -- Data for Name: field_trips; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.field_trips ("fieldTripId", "fieldTripName", description, address, city, date, "time", categoryid) FROM stdin;
-1	Trivia Night / Study Group	Let's study for the Film 101 exam with a trivia night! Test your knowledge. Take lots of notes. And haaaave fun!	2930 Bristol St b102	Costa Mesa	2020-04-04	18:00:00+00	1
-2	Rooftop Film Festival	Enjoy a 12-hour festival of our favorite Sci-Fi films. BYOB and BYOC - Bring your own chair!	305 E 4th St #100	Santa Ana	2020-06-21	11:00:00+00	1
+COPY public.field_trips ("fieldTripId", "fieldTripName", description, address, city, date, "time") FROM stdin;
+1	Trivia Night / Study Group	Let's study for the Film 101 exam with a trivia night! Test your knowledge. Take lots of notes. And haaaave fun!	2930 Bristol St b102	Costa Mesa	2020-04-04	18:00:00+00
+2	Rooftop Film Festival	Enjoy a 12-hour festival of our favorite Sci-Fi films. BYOB and BYOC - Bring your own chair!	305 E 4th St #100	Santa Ana	2020-06-21	11:00:00+00
+\.
+
+
+--
+-- Data for Name: field_trips_categories; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.field_trips_categories ("fieldTripId", "categoryId") FROM stdin;
+1	1
+2	1
 \.
 
 
@@ -540,45 +415,10 @@ SELECT pg_catalog.setval('public."field_trips_fieldTripId_seq"', 1, false);
 
 
 --
--- Name: lessons_courseId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public."lessons_courseId_seq"', 1, false);
-
-
---
 -- Name: lessons_lessonId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public."lessons_lessonId_seq"', 1, false);
-
-
---
--- Name: users_courses_courseId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public."users_courses_courseId_seq"', 1, false);
-
-
---
--- Name: users_courses_userId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public."users_courses_userId_seq"', 1, false);
-
-
---
--- Name: users_field_trips_fieldTripId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public."users_field_trips_fieldTripId_seq"', 1, false);
-
-
---
--- Name: users_field_trips_userId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public."users_field_trips_userId_seq"', 1, false);
 
 
 --
