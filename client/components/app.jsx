@@ -4,6 +4,8 @@ import Home from './home';
 import UserCourses from './user-courses';
 import UserLessons from './user-lessons';
 import UserFieldTrips from './user-field-trips';
+import Header from './header';
+import Navbar from './navbar'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -46,13 +48,15 @@ export default class App extends React.Component {
     }
     return (
       <div>
-        <header className="bg-secondary d-flex justify-content-center">
+        {/* <header className="bg-secondary d-flex justify-content-center">
           <p className="m-auto text-light h4">APP NAME</p>
-        </header>
+        </header> */}
+        <Header setView={this.setView} />
         <div className="component-body p-4 pt-5">
           {view}
         </div>
-        <footer className="bg-secondary d-flex justify-content-between p-5"></footer>
+        {/* <footer className="bg-secondary d-flex justify-content-between p-5"></footer> */}
+        <Navbar />
       </div>
     );
   }
