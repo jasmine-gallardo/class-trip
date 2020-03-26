@@ -134,6 +134,7 @@ app.get('/api/users_field_trips/:userId', (req, res, next) => {
     "field_trips"."city",
     "field_trips"."date",
     "field_trips"."time",
+    "field_trips"."fieldTripId",
     "users_field_trips"."userId"
     from "field_trips"
     join "users_field_trips" using("fieldTripId")
