@@ -2,22 +2,26 @@ import React from 'react';
 import UserList from './user-list';
 import Home from './home';
 import UserCourses from './user-courses';
-// import SearchCourses from './search-courses'
+import SearchCourses from './search-courses'
+import UserLessons from './user-lessons';
+
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: { name: 'users' },
-      user: { userName: '', userId: null }
+      user: { userName: '', userId: null },
+      course: { courseId: null }
     };
     this.setView = this.setView.bind(this);
   }
 
-  setView(name, userName, userId) {
+  setView(name, userName, userId, courseId) {
     this.setState({
       view: { name },
-      user: { userName, userId }
+      user: { userName, userId },
+      course: { courseId }
     });
   }
 
@@ -28,11 +32,13 @@ export default class App extends React.Component {
         <UserList setView={this.setView} />;
         break;
       case 'loggedIn': view =
-        <Home setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId}/>;
+        <Home setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'myCourses': view =
-        <UserCourses setView={this.setView} userId={this.state.user.userId}/>;
+        <UserCourses setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
+      case 'myLessons': view =
+        <UserLessons setView={this.setView} courseId={this.state.course.courseId} />;
     }
     return (
       <div>
@@ -40,7 +46,8 @@ export default class App extends React.Component {
           <p className="m-auto text-light h4">APP NAME</p>
         </header>
         <div className="component-body p-4 pt-5">
-          {view}
+          {/* {view} */}
+          <SearchCourses />
         </div>
         <footer className="bg-secondary d-flex justify-content-between p-5"></footer>
       </div>

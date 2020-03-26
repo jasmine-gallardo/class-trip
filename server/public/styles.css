@@ -21,3 +21,33 @@ header {
   background-color: #EE6963;
   border-radius: 10px;
 }
+
+
+/* Search Courses */
+    .search-box {
+      border: 1px solid #6c757d;
+      border-radius: 20px;
+      padding: 2%;
+      padding-left: 7%;
+    }
+
+    .pop-course {
+      background-color: #FFBC11;
+      border-radius: 10px;
+      height: 100px;
+      width: 100px;
+    }
+
+    .in-border {
+      border: #F57B54 2px solid;
+      border-radius: 10px;
+      height: 80px;
+      width: 80px;
+      font-size: .7rem;
+      text-align: center;
+    }
+
+        .contain {
+      width: 100%;
+      height: 100%;
+    }
