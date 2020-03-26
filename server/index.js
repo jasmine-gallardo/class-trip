@@ -25,6 +25,19 @@ app.get('/api/users', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// GET - View All Field Trips
+app.get('/api/fieldTrips', (req, res, next) => {
+  const sql = `
+    select "fieldTripId",
+          "fieldTripName",
+          "address"
+    from "field_trips"
+  `;
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
 // GET - View Field Trip Details
 app.get('/api/fieldTrips/:fieldTripId', (req, res, next) => {
   const { fieldTripId } = req.params;
@@ -35,7 +48,12 @@ app.get('/api/fieldTrips/:fieldTripId', (req, res, next) => {
   }
 
   const sql = `
-    select *
+    select "fieldTripName",
+           "date",
+           "description",
+           "address",
+           "city",
+           "time"
     from "field_trips"
     where "fieldTripId" = $1
   `;
@@ -52,6 +70,50 @@ app.get('/api/fieldTrips/:fieldTripId', (req, res, next) => {
         return res.status(200).json(result.rows[0]);
       }
     })
+    .catch(err => next(err));
+});
+
+// GET - Search Field Trips - by Category
+app.get('/api/fieldTrips/category', (req, res, next) => {
+  const categoryName = req.body.categoryName;
+  const sql = `
+    select  "field_trips"."fieldTripName",
+            "field_trips"."address",
+            "categories"."categoryName"
+      from  "field_trips"
+      join  "field_trips_categories" using ("fieldTripId")
+      join  "categories" using ("categoryId")
+      where "categoryName" = $1
+`;
+  const value = [categoryName];
+  db.query(sql, value)
+    .then(result => {
+      if (!result.rows[0]) {
+        return res.status(404).json({
+          error: 'Field Trips not found'
+        });
+      } else {
+        return res.json(result.rows);
+      }
+    })
+    .catch(err => next(err));
+});
+
+// GET - Search Field Trips - by City
+app.get('/api/fieldTrips/city', (req, res, next) => {
+  const city = req.body.city;
+  const sql = `
+    select "fieldTripId",
+          "fieldTripName",
+          "address"
+    from "field_trips"
+    where "city" = $1
+  `;
+
+  const value = [city];
+
+  db.query(sql, value)
+    .then(result => res.status(200).json(result.rows))
     .catch(err => next(err));
 });
 
@@ -134,7 +196,6 @@ app.get('/api/users_field_trips/:userId', (req, res, next) => {
     "field_trips"."city",
     "field_trips"."date",
     "field_trips"."time",
-    "field_trips"."fieldTripId",
     "users_field_trips"."userId"
     from "field_trips"
     join "users_field_trips" using("fieldTripId")
@@ -174,6 +235,7 @@ app.get('/api/courses/:courseId', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
 // GET - View User's List of Courses
 app.get('/api/users_courses/:userId', (req, res, next) => {
   if (!parseInt(req.params.userId, 10)) {
