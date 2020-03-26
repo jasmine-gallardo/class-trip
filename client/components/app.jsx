@@ -3,6 +3,7 @@ import UserList from './user-list';
 import Home from './home';
 import UserCourses from './user-courses';
 import UserLessons from './user-lessons';
+import UserFieldTrips from './user-field-trips';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -10,16 +11,18 @@ export default class App extends React.Component {
     this.state = {
       view: { name: 'users' },
       user: { userName: '', userId: null },
-      course: { courseId: null }
+      course: { courseId: null },
+      fieldTrip: { fieldTripId: null }
     };
     this.setView = this.setView.bind(this);
   }
 
-  setView(name, userName, userId, courseId) {
+  setView(name, userName, userId, courseId, fieldTripId) {
     this.setState({
       view: { name },
       user: { userName, userId },
-      course: { courseId }
+      course: { courseId },
+      fieldTrip: { fieldTripId }
     });
   }
 
@@ -37,6 +40,9 @@ export default class App extends React.Component {
         break;
       case 'myLessons': view =
         <UserLessons setView={this.setView} courseId={this.state.course.courseId} />;
+        break;
+      case 'myFieldTrips': view =
+        <UserFieldTrips setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId} courseId={this.state.course.courseId}/>;
     }
     return (
       <div>
