@@ -60,7 +60,7 @@ export default class UserLessons extends React.Component {
           <p className="h2">Lessons</p>
         </div>
         {
-          this.state.lessons.map(lesson => {
+          this.props.lessons.map(lesson => {
             return (
               <Lesson
                 key={lesson.lessonId}
