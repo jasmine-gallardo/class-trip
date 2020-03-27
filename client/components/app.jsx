@@ -14,7 +14,8 @@ export default class App extends React.Component {
       user: { userName: '', userId: null },
       course: { courseId: null },
       fieldTrip: { fieldTripId: null },
-      allFieldTrips: []
+      allFieldTrips: [],
+      lessons: []
     };
     this.setView = this.setView.bind(this);
     this.addFieldTrip = this.addFieldTrip.bind(this);
@@ -35,11 +36,32 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  setView(name, userName, userId, courseId, fieldTripId) {
+  setView(name) {
     this.setState({
-      view: { name },
-      user: { userName, userId },
-      course: { courseId },
+      view: { name }
+    });
+  }
+
+  setUser(userName, userId) {
+    this.setState({
+      user: { userName, userId }
+    });
+  }
+
+  setCourse(courseId) {
+    this.setState({
+      course: { courseId }
+    });
+  }
+
+  setLessons(lessons) {
+    this.setState({
+      lessons: []
+    });
+  }
+
+  setFieldTrip(fieldTripId) {
+    this.setState({
       fieldTrip: { fieldTripId }
     });
   }
