@@ -75,7 +75,7 @@ export default class FieldTripForm extends React.Component {
         <div className="input-group-lg mb-2">
           <label className="d-block" htmlFor="fieldTripName">Name your field trip.</label>
           <input
-            onChange={() => this.handleChangeFTName}
+            onChange={this.handleChangeFTName}
             className="form-control"
             type="text"
             id="fieldTripName"/>
@@ -83,7 +83,7 @@ export default class FieldTripForm extends React.Component {
         <div className="input-group-lg mb-2">
           <label className="d-block" htmlFor="address">Address</label>
           <input
-            onChange={() => this.handleChangeAddress}
+            onChange={this.handleChangeAddress}
             className="form-control"
             type="text"
             id="address"/>
@@ -91,14 +91,14 @@ export default class FieldTripForm extends React.Component {
         <div className="input-group-lg mb-2">
           <label className="d-block" htmlFor="city">City</label>
           <input
-            onChange={() => this.handleChangeCity}
+            onChange={this.handleChangeCity}
             className="form-control"
             type="text"
             id="city"/>
         </div>
         <div className="input-group-lg mb-4">
           <label className="d-block" htmlFor="category">Category</label>
-          <select onChange={() => this.handleChangeCategory} className="form-control" name="category" id="category">
+          <select onChange={this.handleChangeCategory} className="form-control" name="category" id="category">
             <option value="">Please choose an option</option>
             <option value="Film">Film</option>
             <option value="Art">Art</option>
@@ -107,9 +107,9 @@ export default class FieldTripForm extends React.Component {
         </div>
         <div className="d-flex input-group-lg mb-4">
           <label htmlFor="date"></label>
-          <input onChange={() => this.handleChangeDate} className="form-control w-50 ml-2 mr-2" type="text" name="date" id="date" placeholder="Type date"/>
+          <input onChange={this.handleChangeDate} className="form-control w-50 ml-2 mr-2" type="text" name="date" id="date" placeholder="Type date"/>
           <label htmlFor="time"></label>
-          <select onChange={() => this.handleChangeTime} className="form-control w-50" name="time" id="time">
+          <select onChange={this.handleChangeTime} className="form-control w-50" name="time" id="time">
             <option value="">Pick time &#9660;</option>
             <option value="00:00">12:00am</option>
             <option value="01:00">1:00am</option>
@@ -138,7 +138,7 @@ export default class FieldTripForm extends React.Component {
           </select>
         </div>
         <div className="input-group-lg mb-3">
-          <textarea onChange={() => this.handleChangeDescription} className="form-control" aria-label="With textarea" placeholder="Describe your field trip"></textarea>
+          <textarea onChange={this.handleChangeDescription} className="form-control" aria-label="With textarea" placeholder="Describe your field trip"></textarea>
         </div>
         <div className="text-center">
           <button onClick={() => this.props.setView('myFieldTrips', userId)} className="btn-lg btn-dark">Add Field Trip</button>
