@@ -123,7 +123,7 @@ export default class FieldTripForm extends React.Component {
           <label htmlFor="time"></label>
           <select onChange={this.handleChangeTime} className="form-control w-50" name="time" id="time">
             <option value="">Time &#9660;</option>
-            <option value="00:00">12:00am</option>
+            <option value="24:00">12:00am</option>
             <option value="01:00">1:00am</option>
             <option value="02:00">2:00am</option>
             <option value="03:00">3:00am</option>
@@ -139,14 +139,14 @@ export default class FieldTripForm extends React.Component {
             <option value="13:00">1:00pm</option>
             <option value="14:00">2:00pm</option>
             <option value="15:00">3:00pm</option>
-            <option value="15:00">4:00pm</option>
-            <option value="15:00">5:00pm</option>
-            <option value="15:00">6:00pm</option>
-            <option value="15:00">7:00pm</option>
-            <option value="15:00">8:00pm</option>
-            <option value="15:00">9:00pm</option>
-            <option value="15:00">10:00pm</option>
-            <option value="15:00">11:00pm</option>
+            <option value="16:00">4:00pm</option>
+            <option value="17:00">5:00pm</option>
+            <option value="18:00">6:00pm</option>
+            <option value="19:00">7:00pm</option>
+            <option value="20:00">8:00pm</option>
+            <option value="21:00">9:00pm</option>
+            <option value="22:00">10:00pm</option>
+            <option value="23:00">11:00pm</option>
           </select>
         </div>
         <div className="input-group-lg mb-3">
