@@ -192,6 +192,7 @@ app.get('/api/users_field_trips/:userId', (req, res, next) => {
   }
   const sql = `
   select "field_trips"."fieldTripName",
+    "field_trips"."fieldTripId",
     "field_trips"."address",
     "field_trips"."city",
     "field_trips"."date",
