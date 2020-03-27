@@ -21,6 +21,7 @@ export default class App extends React.Component {
     this.addFieldTrip = this.addFieldTrip.bind(this);
     this.getLessons = this.getLessons.bind(this);
     this.getFieldTrips = this.getFieldTrips.bind(this);
+    this.setUser = this.setUser.bind(this);
   }
 
   getLessons(courseId) {
@@ -86,7 +87,7 @@ export default class App extends React.Component {
     let view;
     switch (this.state.view.name) {
       case 'users': view =
-        <UserList setView={this.setView} />;
+        <UserList setView={this.setView} setUser={this.setUser}/>;
         break;
       case 'loggedIn': view =
         <Home setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId} />;
