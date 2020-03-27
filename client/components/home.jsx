@@ -25,7 +25,7 @@ export default function Home(props) {
         </div>
         <div>
           <button
-            onClick={() => props.setView('myFieldTrips', userName)}
+            onClick={() => props.setView('myFieldTrips', userName, userId)}
             className="w-75 btn-lg btn-dark m-2" type="submit">My Field Trips</button>
         </div>
       </div>
