@@ -27,13 +27,6 @@ export default class UserLessons extends React.Component {
       );
   }
 
-  getLessons(courseId) {
-    fetch(`/api/courses/${courseId}`)
-      .then(res => res.json())
-      .then(lessonsArray => this.setState({ lessons: lessonsArray }))
-      .catch(err => console.error(err));
-  }
-
   render() {
     if (!this.state.lessons[0]) {
       return <p>No lessons found for this course</p>;

@@ -21,6 +21,13 @@ export default class App extends React.Component {
     this.addFieldTrip = this.addFieldTrip.bind(this);
   }
 
+  getLessons(courseId) {
+    fetch(`/api/courses/${courseId}`)
+      .then(res => res.json())
+      .then(lessonsArray => this.setState({ lessons: lessonsArray }))
+      .catch(err => console.error(err));
+  }
+
   addFieldTrip(newFieldTrip) {
     const req = {
       method: 'POST',
