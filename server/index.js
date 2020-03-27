@@ -265,6 +265,18 @@ app.get('/api/users_courses/:userId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// GET - Check course enrollment
+app.get('/api/users_courses/:userId/:courseId', (req, res, next) => {
+  const sql = `
+    select *
+      from "users_courses"
+      where "userId" = $1 AND "courseId" = $2
+  `;
+  db.query(sql, [req.params.userId, req.params.courseId])
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
 // GET - View Lessons
 app.get('/api/lessons/:lessonId', (req, res, next) => {
   const lessonId = req.params.lessonId;
