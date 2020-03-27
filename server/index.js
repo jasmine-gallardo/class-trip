@@ -192,6 +192,7 @@ app.get('/api/users_field_trips/:userId', (req, res, next) => {
   }
   const sql = `
   select "field_trips"."fieldTripName",
+    "field_trips"."fieldTripId",
     "field_trips"."address",
     "field_trips"."city",
     "field_trips"."date",
@@ -261,6 +262,18 @@ app.get('/api/users_courses/:userId', (req, res, next) => {
         return res.json(result.rows);
       }
     })
+    .catch(err => next(err));
+});
+
+// GET - Check course enrollment
+app.get('/api/users_courses/:userId/:courseId', (req, res, next) => {
+  const sql = `
+    select *
+      from "users_courses"
+      where "userId" = $1 AND "courseId" = $2
+  `;
+  db.query(sql, [req.params.userId, req.params.courseId])
+    .then(result => res.json(result.rows))
     .catch(err => next(err));
 });
 
