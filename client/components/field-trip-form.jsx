@@ -99,7 +99,7 @@ export default class FieldTripForm extends React.Component {
         <div className="input-group-lg mb-4">
           <label className="d-block" htmlFor="category">Category</label>
           <select onChange={this.handleChangeCategory} className="form-control" name="category" id="category">
-            <option value="">Please choose an option</option>
+            <option value="">Please choose an option &#9660;</option>
             <option value="Film">Film</option>
             <option value="Art">Art</option>
             <option value="Wellness">Wellness</option>
@@ -107,10 +107,10 @@ export default class FieldTripForm extends React.Component {
         </div>
         <div className="d-flex input-group-lg mb-4">
           <label htmlFor="date"></label>
-          <input onChange={this.handleChangeDate} className="form-control w-50 ml-2 mr-2" type="text" name="date" id="date" placeholder="Type date"/>
+          <input onChange={this.handleChangeDate} className="form-control w-50 ml-2 mr-2" type="text" name="date" id="date" placeholder="mm/dd/yy"/>
           <label htmlFor="time"></label>
           <select onChange={this.handleChangeTime} className="form-control w-50" name="time" id="time">
-            <option value="">Pick time &#9660;</option>
+            <option value="">Time &#9660;</option>
             <option value="00:00">12:00am</option>
             <option value="01:00">1:00am</option>
             <option value="02:00">2:00am</option>
