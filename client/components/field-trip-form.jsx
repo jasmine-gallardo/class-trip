@@ -81,6 +81,7 @@ export default class FieldTripForm extends React.Component {
   }
 
   render() {
+    const userName = this.props.user.userName;
     const userId = this.props.user.userId;
     return (
       <form onSubmit={this.handleSubmit} onReset={this.handleReset}>
@@ -153,7 +154,7 @@ export default class FieldTripForm extends React.Component {
           <textarea onChange={this.handleChangeDescription} className="form-control" aria-label="With textarea" placeholder="Describe your field trip"></textarea>
         </div>
         <div className="text-center">
-          <button onClick={() => this.props.setView('myFieldTrips', userId)} className="btn-lg btn-dark">Add Field Trip</button>
+          <button onClick={() => this.props.setView('myFieldTrips', userName, userId)} className="btn-lg btn-dark" type="submit">Add Field Trip</button>
         </div>
       </form>
     );
