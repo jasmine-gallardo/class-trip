@@ -10,7 +10,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: { name: 'users' },
+      view: { name: 'planFieldTrip' },
       user: { userName: '', userId: null },
       course: { courseId: null },
       fieldTrip: { fieldTripId: null }
@@ -46,7 +46,7 @@ export default class App extends React.Component {
         <UserFieldTrips setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId} courseId={this.state.course.courseId}/>;
         break;
       case 'planFieldTrip': view =
-        <FieldTripForm setView={this.setView} userId={this.state.user.userId}/>;
+        <FieldTripForm setView={this.setView} user={this.state.user}/>;
     }
     return (
       <div>
