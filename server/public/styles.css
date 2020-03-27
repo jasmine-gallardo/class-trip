@@ -22,32 +22,30 @@ header {
   border-radius: 10px;
 }
 
-
 /* Search Courses */
-    .search-box {
-      border: 1px solid #6c757d;
-      border-radius: 20px;
-      padding: 2%;
-      padding-left: 7%;
-    }
+.search-box {
+  border: 1px solid #6c757d;
+  border-radius: 20px;
+  padding: 2%;
+  padding-left: 7%;
+}
 
-    .pop-course {
-      background-color: #FFBC11;
-      border-radius: 10px;
-      height: 100px;
-      width: 100px;
-    }
+.contain {
+  width: 100%;
+  height: 100%;
+}
 
-    .in-border {
-      border: #F57B54 2px solid;
-      border-radius: 10px;
-      height: 80px;
-      width: 80px;
-      font-size: .7rem;
-      text-align: center;
-    }
+.desc {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 2; /* number of lines to show */
+}
 
-        .contain {
-      width: 100%;
-      height: 100%;
-    }
+#clear-select {
+  border: #EE6963 solid 1px;
+  background-color: #EE6963;
+  border-radius: 20px;
+  color: white;
+}

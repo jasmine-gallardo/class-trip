@@ -34,7 +34,7 @@ export default class App extends React.Component {
         <Home setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'searchCourses': view =
-        <SearchCourses setView={this.setView} userName={this.state.user.userName} />;
+        <SearchCourses setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'myCourses': view =
         <UserCourses setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId} />;
