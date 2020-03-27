@@ -4,6 +4,7 @@ import Home from './home';
 import UserCourses from './user-courses';
 import UserLessons from './user-lessons';
 import UserFieldTrips from './user-field-trips';
+import FieldTripForm from './field-trip-form';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -43,6 +44,9 @@ export default class App extends React.Component {
         break;
       case 'myFieldTrips': view =
         <UserFieldTrips setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId} courseId={this.state.course.courseId}/>;
+        break;
+      case 'planFieldTrip': view =
+        <FieldTripForm setView={this.setView} userId={this.state.user.userId}/>;
     }
     return (
       <div>
