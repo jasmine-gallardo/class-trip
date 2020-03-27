@@ -28,8 +28,8 @@ export default class UserFieldTrips extends React.Component {
       <div className="h-75 d-flex flex-column">
         <div className="p-2 mb-3 d-flex align-items-start justify-content-center">
           <div className="d-flex justify-content-center">
-            <i className="far fa-calendar-alt fa-3x mr-3"></i>
-            <p className="h2">Field Trips</p>
+            {/* <i className="far fa-calendar-alt fa-3x mr-3"></i>
+            <p className="h2">Field Trips</p> */}
           </div>
 
         </div>
