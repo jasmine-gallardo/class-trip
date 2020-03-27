@@ -4,10 +4,8 @@ export default class UserLessons extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lessons: [],
       enrollment: null
     };
-    this.getLessons = this.getLessons.bind(this);
   }
 
   componentDidMount() {
@@ -19,16 +17,16 @@ export default class UserLessons extends React.Component {
       .then(res => res.json())
       .then(enrollmentArray => {
         if (!enrollmentArray[0]) {
-          this.setState({ enrollment: false }, this.getLessons(this.props.courseId));
+          this.setState({ enrollment: false }, this.props.getLessons(this.props.courseId));
         } else {
-          this.setState({ enrollment: true }, this.getLessons(this.props.courseId));
+          this.setState({ enrollment: true }, this.props.getLessons(this.props.courseId));
         }
       }
       );
   }
 
   render() {
-    if (!this.state.lessons[0]) {
+    if (!this.props.lessons[0]) {
       return <p>No lessons found for this course</p>;
     }
     if (!this.state.enrollment) {
@@ -42,7 +40,7 @@ export default class UserLessons extends React.Component {
             <p className="h2">Lessons</p>
           </div>
           {
-            this.state.lessons.map(lesson => {
+            this.props.lessons.map(lesson => {
               return (
                 <Lesson
                   key={lesson.lessonId}

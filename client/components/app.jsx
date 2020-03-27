@@ -19,6 +19,7 @@ export default class App extends React.Component {
     };
     this.setView = this.setView.bind(this);
     this.addFieldTrip = this.addFieldTrip.bind(this);
+    this.getLessons = this.getLessons.bind(this);
   }
 
   getLessons(courseId) {
@@ -86,7 +87,7 @@ export default class App extends React.Component {
         <UserCourses setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'myLessons': view =
-        <UserLessons setView={this.setView} courseId={this.state.course.courseId} userId={this.state.user.userId}/>;
+        <UserLessons setView={this.setView} getLessons={this.getLessons} lessons={this.state.lessons} courseId={this.state.course.courseId} userId={this.state.user.userId}/>;
         break;
       case 'myFieldTrips': view =
         <UserFieldTrips setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId} courseId={this.state.course.courseId}/>;
