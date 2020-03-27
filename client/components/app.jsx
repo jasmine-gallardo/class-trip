@@ -11,11 +11,28 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: { name: 'users' },
-      user: { userName: '', userId: null },
+      user: { userName: '', userId: 1 },
       course: { courseId: null },
-      fieldTrip: { fieldTripId: null }
+      fieldTrip: { fieldTripId: null },
+      allFieldTrips: []
     };
     this.setView = this.setView.bind(this);
+    this.addFieldTrip = this.addFieldTrip.bind(this);
+  }
+
+  addFieldTrip(newFieldTrip) {
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newFieldTrip)
+    };
+    fetch('/api/field_trips', req)
+      .then(res => res.json())
+      .then(newFieldTrip => {
+        const updatedFieldTripsArray = this.state.allFieldTrips.concat(newFieldTrip);
+        this.setState({ allFieldTrips: updatedFieldTripsArray });
+      })
+      .catch(err => console.error(err));
   }
 
   setView(name, userName, userId, courseId, fieldTripId) {
@@ -46,7 +63,7 @@ export default class App extends React.Component {
         <UserFieldTrips setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId} courseId={this.state.course.courseId}/>;
         break;
       case 'planFieldTrip': view =
-        <FieldTripForm setView={this.setView} user={this.state.user}/>;
+        <FieldTripForm setView={this.setView} addFieldTrip={this.addFieldTrip} user={this.state.user}/>;
     }
     return (
       <div>
