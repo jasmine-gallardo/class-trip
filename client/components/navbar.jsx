@@ -4,6 +4,7 @@ export default class Navbar extends React.Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     const setView = this.props.setView;
     return (
@@ -11,6 +12,6 @@ export default class Navbar extends React.Component {
 
       </footer>
 
-    )
+    );
   }
 }

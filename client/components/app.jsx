@@ -5,7 +5,7 @@ import UserCourses from './user-courses';
 import UserLessons from './user-lessons';
 import UserFieldTrips from './user-field-trips';
 import Header from './header';
-import Navbar from './navbar'
+import Navbar from './navbar';
 
 export default class App extends React.Component {
   constructor(props) {
