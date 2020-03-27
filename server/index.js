@@ -293,15 +293,12 @@ app.get('/api/lessons/:lessonId', (req, res, next) => {
 
 // GET - Search Categories
 app.get('/api/categories', (req, res, next) => {
-  // const categoryName = req.body.categoryName;
   const sql = `
 select "categoryId",
        "categoryName"
 from   "categories"
 order by "categoryName"
 `;
-  // where  "categoryName" ilike $1 || '%'       , value
-  // const value = [categoryName];
   db.query(sql)
     .then(result => {
       if (!result.rows[0]) {
