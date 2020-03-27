@@ -10,6 +10,7 @@ export default class UserCourses extends React.Component {
   }
 
   componentDidMount() {
+    console.log('user-courses this.props:', this.props);
     this.getCourses(this.props.userId);
   }
 

@@ -21,6 +21,20 @@ export default class App extends React.Component {
     };
     this.setView = this.setView.bind(this);
     this.addFieldTrip = this.addFieldTrip.bind(this);
+    this.getEnrollment = this.getEnrollment.bind(this);
+  }
+
+  getEnrollment(user, course) {
+    fetch(`/api/users_courses/${user}/${course}`)
+      .then(res => res.json())
+      .then(enrollmentArray => {
+        if (!enrollmentArray[0]) {
+          this.setState({ enrollment: false }, this.getLessons(this.props.courseId));
+        } else {
+          this.setState({ enrollment: true }, this.getLessons(this.props.courseId));
+        }
+      }
+      );
   }
 
   addFieldTrip(newFieldTrip) {
@@ -70,7 +84,7 @@ export default class App extends React.Component {
     }
     return (
       <div>
-        <Header view={this.state.view.name} />
+        <Header setView={this.setView} view={this.state.view.name} getEnrollment={this.state.getEnrollment}/>
         <div className="component-body p-4 pt-5">
           {view}
         </div>

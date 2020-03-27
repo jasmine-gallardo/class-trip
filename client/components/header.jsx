@@ -3,6 +3,9 @@ import React from 'react';
 export default class Header extends React.Component {
   // constructor(props) {
   //   super(props);
+  //   this.state = {
+  //   previousPage: []
+  //   }
   // }
 
   getHeaderContent() {
@@ -34,7 +37,19 @@ export default class Header extends React.Component {
             <p className="h2"> Plan Field Trip</p>
           </div>
         );
-
+      case 'myLessons':
+        return (
+          <div className="w-70 m-auto p-2 d-flex justify-content-center justify-content-between">
+            <i
+            // Depending on the previous page (passed in as props), different onClicks would result:
+            // onClick={() => this.props.setView(this.props.previousPage)}
+            // For example:
+            // onClick={() => this.props.setView('myCourses')}
+            // onClick={() => this.props.setView('searchCourses')}
+              className="fas fa-angle-left fa-3x mr-3"></i>
+            <p className="h2"> My Lessons</p>
+          </div>
+        );
     }
   }
 
