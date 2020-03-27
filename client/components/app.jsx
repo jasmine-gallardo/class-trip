@@ -10,7 +10,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: { name: 'planFieldTrip' },
+      view: { name: 'users' },
       user: { userName: '', userId: null },
       course: { courseId: null },
       fieldTrip: { fieldTripId: null }

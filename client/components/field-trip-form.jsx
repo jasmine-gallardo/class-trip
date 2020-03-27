@@ -8,8 +8,8 @@ export default class FieldTripForm extends React.Component {
       address: '',
       city: '',
       category: '',
-      date: null,
-      time: null,
+      date: '',
+      time: '',
       description: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,6 +25,18 @@ export default class FieldTripForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const newFieldTrip = {
+      fieldTripName: this.state.name,
+      address: this.state.address,
+      city: this.state.city,
+      categoryId: this.state.category,
+      date: this.state.date,
+      time: this.state.time,
+      description: this.state.description,
+      userId: this.props.user.userId
+    };
+    this.props.addFieldTrip(newFieldTrip);
+    this.handleReset(event);
   }
 
   handleReset(event) {
@@ -34,8 +46,8 @@ export default class FieldTripForm extends React.Component {
       address: '',
       city: '',
       category: '',
-      date: null,
-      time: null,
+      date: '',
+      time: '',
       description: ''
     });
   }
@@ -100,9 +112,9 @@ export default class FieldTripForm extends React.Component {
           <label className="d-block" htmlFor="category">Category</label>
           <select onChange={this.handleChangeCategory} className="form-control" name="category" id="category">
             <option value="">Please choose an option &#9660;</option>
-            <option value="Film">Film</option>
-            <option value="Art">Art</option>
-            <option value="Wellness">Wellness</option>
+            <option value="1">Film</option>
+            <option value="2">Art</option>
+            <option value="3">Wellness</option>
           </select>
         </div>
         <div className="d-flex input-group-lg mb-4">
