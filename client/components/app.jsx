@@ -20,12 +20,20 @@ export default class App extends React.Component {
     this.setView = this.setView.bind(this);
     this.addFieldTrip = this.addFieldTrip.bind(this);
     this.getLessons = this.getLessons.bind(this);
+    this.getFieldTrips = this.getFieldTrips.bind(this);
   }
 
   getLessons(courseId) {
     fetch(`/api/courses/${courseId}`)
       .then(res => res.json())
       .then(lessonsArray => this.setState({ lessons: lessonsArray }))
+      .catch(err => console.error(err));
+  }
+
+  getFieldTrips(fieldTripId) {
+    fetch(`/api/users_field_trips/${fieldTripId}`)
+      .then(res => res.json())
+      .then(fieldTripsArray => this.setState({ fieldTrips: fieldTripsArray }))
       .catch(err => console.error(err));
   }
 
@@ -90,7 +98,7 @@ export default class App extends React.Component {
         <UserLessons setView={this.setView} getLessons={this.getLessons} lessons={this.state.lessons} courseId={this.state.course.courseId} userId={this.state.user.userId}/>;
         break;
       case 'myFieldTrips': view =
-        <UserFieldTrips setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId} courseId={this.state.course.courseId}/>;
+        <UserFieldTrips setView={this.setView} fieldTrips={this.state.allFieldTrips} userName={this.state.user.userName} userId={this.state.user.userId} courseId={this.state.course.courseId}/>;
         break;
       case 'planFieldTrip': view =
         <FieldTripForm setView={this.setView} addFieldTrip={this.addFieldTrip} user={this.state.user}/>;
