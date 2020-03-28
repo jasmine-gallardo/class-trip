@@ -36,6 +36,7 @@ export default class UserList extends React.Component {
                 userId={user.userId}
                 name={user.name}
                 setView={this.props.setView}
+                setUser={this.props.setUser}
               />
             );
           })

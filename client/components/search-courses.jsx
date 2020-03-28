@@ -1,4 +1,5 @@
 import React from 'react';
+import CourseSearchResult from './course-search-result';
 
 export default class SearchCourses extends React.Component {
   constructor(props) {
@@ -79,7 +80,7 @@ export default class SearchCourses extends React.Component {
         <div className="mb-1">Category: {this.state.categoryName}</div>
         {this.state.courses.map((course, key) => {
           return (
-            <Result
+            <CourseSearchResult
               key={course.courseId}
               courses={this.state.courses}
               name={course.name}
@@ -88,35 +89,11 @@ export default class SearchCourses extends React.Component {
               userName={this.props.userName}
               userId={this.props.userId}
               setView={this.props.setView}
+              setCourse={this.props.setCourse}
             />
           );
         })}
       </div >
     );
   }
-}
-
-function Result(props) {
-  const userName = props.userName;
-  const userId = props.userId;
-  const courseId = props.courseId;
-  const courseName = props.name;
-  const courseDesc = props.courseDesc;
-  return (
-    <div className="col-12 card p-3 mb-1 text-white bg-warning">
-      <div className="row">
-        <div className="col-9">
-          <div className="h4">
-            {courseName}
-          </div>
-          <div className="text-dark desc">
-            {courseDesc}
-          </div>
-        </div>
-        <button
-          onClick={() => props.setView('myLessons', userName, userId, courseId)}
-          type="button" className="btn btn-dark my-1"> INFO </button>
-      </div>
-    </div>
-  );
 }

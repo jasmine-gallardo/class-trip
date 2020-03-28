@@ -1,27 +1,12 @@
 import React from 'react';
 
 export default class UserFieldTrips extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      fieldTrips: []
-    };
-    this.getFieldTrips = this.getFieldTrips.bind(this);
-  }
-
   componentDidMount() {
-    this.getFieldTrips(this.props.userId);
-  }
-
-  getFieldTrips(fieldTripId) {
-    fetch(`/api/users_field_trips/${fieldTripId}`)
-      .then(res => res.json())
-      .then(fieldTripsArray => this.setState({ fieldTrips: fieldTripsArray }))
-      .catch(err => console.error(err));
+    this.props.getFieldTrips(this.props.userId);
   }
 
   render() {
-    if (!this.state.fieldTrips[0]) {
+    if (!this.props.fieldTrips[0]) {
       return <p>Looks like you need more field trips!</p>;
     }
     return (
@@ -34,7 +19,7 @@ export default class UserFieldTrips extends React.Component {
 
         </div>
         {
-          this.state.fieldTrips.map(fieldTrip => {
+          this.props.fieldTrips.map(fieldTrip => {
             return (
               <FieldTrip
                 key={fieldTrip.fieldTripId}
@@ -59,7 +44,7 @@ function FieldTrip(props) {
   return (
     <div className="w-100 d-flex justify-content-center">
       <button
-        onClick={() => props.setView('fieldTripDetails', props.userName, props.userId, props.courseId, props.fieldTripId)}
+        onClick={() => props.setView('fieldTripDetails')}
         className="d-flex align-items-center w-100 btn-block btn-info btn-outline-secondary text-dark h4 mb-3 rounded">
         <div>
           <h3 className="text-light">{props.name} </h3>

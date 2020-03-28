@@ -1,13 +1,12 @@
 import React from 'react';
+import LessonButton from './lesson-button';
 
 export default class UserLessons extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lessons: [],
       enrollment: null
     };
-    this.getLessons = this.getLessons.bind(this);
   }
 
   componentDidMount() {
@@ -19,23 +18,16 @@ export default class UserLessons extends React.Component {
       .then(res => res.json())
       .then(enrollmentArray => {
         if (!enrollmentArray[0]) {
-          this.setState({ enrollment: false }, this.getLessons(this.props.courseId));
+          this.setState({ enrollment: false }, this.props.getLessons(this.props.courseId));
         } else {
-          this.setState({ enrollment: true }, this.getLessons(this.props.courseId));
+          this.setState({ enrollment: true }, this.props.getLessons(this.props.courseId));
         }
       }
       );
   }
 
-  getLessons(courseId) {
-    fetch(`/api/courses/${courseId}`)
-      .then(res => res.json())
-      .then(lessonsArray => this.setState({ lessons: lessonsArray }))
-      .catch(err => console.error(err));
-  }
-
   render() {
-    if (!this.state.lessons[0]) {
+    if (!this.props.lessons[0]) {
       return <p>No lessons found for this course</p>;
     }
     if (!this.state.enrollment) {
@@ -49,12 +41,14 @@ export default class UserLessons extends React.Component {
             <p className="h2">Lessons</p>
           </div>
           {
-            this.state.lessons.map(lesson => {
+            this.props.lessons.map(lesson => {
               return (
-                <Lesson
+                <LessonButton
                   key={lesson.lessonId}
+                  lessonId={lesson.lessonId}
                   name={lesson.name}
                   setView={this.props.setView}
+                  setLessonId={this.props.setLessonId}
                 />
               );
             })
@@ -69,12 +63,14 @@ export default class UserLessons extends React.Component {
           <p className="h2">Lessons</p>
         </div>
         {
-          this.state.lessons.map(lesson => {
+          this.props.lessons.map(lesson => {
             return (
-              <Lesson
+              <LessonButton
                 key={lesson.lessonId}
+                lessonId={lesson.lessonId}
                 name={lesson.name}
                 setView={this.props.setView}
+                setLessonId={this.props.setLessonId}
               />
             );
           })
@@ -82,17 +78,4 @@ export default class UserLessons extends React.Component {
       </div>
     );
   }
-}
-
-function Lesson(props) {
-  const lessonName = props.name;
-  return (
-    <div className="w-100 d-flex justify-content-center">
-      <button
-        onClick={() => props.setView('lessonDetails', lessonName)}
-        className="w-100 btn-block bg-info text-light h4 mb-3 rounded">
-        {lessonName}
-      </button>
-    </div>
-  );
 }

@@ -2,7 +2,6 @@ import React from 'react';
 
 export default function Home(props) {
   const userName = props.userName;
-  const userId = props.userId;
   return (
     <div>
       <div className="w-50 m-auto p-2 d-flex justify-content-center justify-content-between">
@@ -11,21 +10,21 @@ export default function Home(props) {
       </div>
       <div className="search-buttons mt-5 mb-5 d-flex justify-content-center align-items-center">
         <button
-          onClick={() => props.setView('searchCourses', userName)}
+          onClick={() => props.setView('searchCourses')}
           className="courses pt-5 pb-5 pr-4 pl-4 mr-1 text-light h4" type="submit">Courses</button>
         <button
-          onClick={() => props.setView('fieldTrips', userName)}
+          onClick={() => props.setView('fieldTrips')}
           className="field-trips pt-5 pb-5 pr-3 pl-3 ml-1 text-light h4 ">Field Trips</button>
       </div>
       <div className="text-center">
         <div>
           <button
-            onClick={() => props.setView('myCourses', userName, userId)}
+            onClick={() => props.setView('myCourses')}
             className="w-75 btn-lg btn-dark m-2" type="submit">My Courses</button>
         </div>
         <div>
           <button
-            onClick={() => props.setView('myFieldTrips', userName, userId)}
+            onClick={() => props.setView('myFieldTrips')}
             className="w-75 btn-lg btn-dark m-2" type="submit">My Field Trips</button>
         </div>
       </div>
