@@ -8,7 +8,7 @@ import UserFieldTrips from './user-field-trips';
 import FieldTripForm from './field-trip-form';
 import LessonDetails from './lesson-details';
 import Header from './header';
-// import Navbar from './navbar';
+import Navbar from './navbar';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -126,11 +126,12 @@ export default class App extends React.Component {
     }
     return (
       <div>
-        <Header setView={this.setView} view={this.state.view.name} getEnrollment={this.state.getEnrollment}/>
+        <Header setView={this.setView} view={this.state.view.name} />
         <div className="component-body p-4 pt-5">
           {view}
         </div>
-        <footer className="bg-secondary d-flex justify-content-between p-5"></footer>
+        {/* <footer className="bg-secondary d-flex justify-content-between p-5"></footer> */}
+        <Navbar setView={this.setView} view={this.state.view.name} />
       </div>
     );
   }

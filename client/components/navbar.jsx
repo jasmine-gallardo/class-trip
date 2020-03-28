@@ -1,16 +1,18 @@
 import React from 'react';
 
 export default class Navbar extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
 
   render() {
-    // const setView = this.props.setView;
     return (
-      <footer className="bg-secondary d-flex justify-content-between p-5">
-        {/* <i className="fas fa-home fa-3x"></i>
-        <i className="far fa-clipboard fa-3x"></i> */}
+      <footer className="bg-secondary d-flex align-items-center justify-content-between p-4">
+        <div onClick={() => this.props.setView('loggedIn')}>
+          <i
+            className="fas fa-home fa-2x"></i>
+        </div>
+        <div onClick={() => this.props.setView('planFieldTrip')}>
+          <i
+            className="far fa-clipboard fa-2x"></i>
+        </div>
       </footer>
 
     );
