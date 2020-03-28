@@ -1,4 +1,5 @@
 import React from 'react';
+import LessonButton from './lesson-button';
 
 export default class UserLessons extends React.Component {
   constructor(props) {
@@ -42,7 +43,7 @@ export default class UserLessons extends React.Component {
           {
             this.props.lessons.map(lesson => {
               return (
-                <Lesson
+                <LessonButton
                   key={lesson.lessonId}
                   name={lesson.name}
                   setView={this.props.setView}
@@ -62,7 +63,7 @@ export default class UserLessons extends React.Component {
         {
           this.props.lessons.map(lesson => {
             return (
-              <Lesson
+              <LessonButton
                 key={lesson.lessonId}
                 name={lesson.name}
                 setView={this.props.setView}
@@ -73,17 +74,4 @@ export default class UserLessons extends React.Component {
       </div>
     );
   }
-}
-
-function Lesson(props) {
-  const lessonName = props.name;
-  return (
-    <div className="w-100 d-flex justify-content-center">
-      <button
-        onClick={() => props.setView('lessonDetails', lessonName)}
-        className="w-100 btn-block bg-info text-light h4 mb-3 rounded">
-        {lessonName}
-      </button>
-    </div>
-  );
 }
