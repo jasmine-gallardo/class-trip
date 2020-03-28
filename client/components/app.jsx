@@ -124,7 +124,7 @@ export default class App extends React.Component {
         <header className="bg-secondary d-flex justify-content-center">
           <p className="m-auto text-light h4">APP NAME</p>
         </header>
-        <div className="component-body p-4 pt-5">
+        <div className="component-body p-4 pt-5 overflow-auto">
           {view}
         </div>
         <footer className="bg-secondary d-flex justify-content-between p-5"></footer>
