@@ -32,26 +32,7 @@ export default class App extends React.Component {
     this.setLessons = this.setLessons.bind(this);
     this.setLessonId = this.setLessonId.bind(this);
     this.setFieldTrip = this.setFieldTrip.bind(this);
-    // this.getEnrollment = this.getEnrollment.bind(this);
   }
-
-  // getEnrollment(user, course) {
-  //   fetch(`/api/users_courses/${user}/${course}`)
-  //     .then(res => res.json())
-  //     .then(enrollmentArray => {
-  //       if (!enrollmentArray[0]) {
-  //         this.setState({ enrollment: false }, this.getLessons(this.props.courseId));
-  //       } else {
-  //         this.setState({ enrollment: true }, this.getLessons(this.props.courseId));
-  //       }
-  //     }
-  //     );
-  //   this.getLessons = this.getLessons.bind(this);
-  //   this.getFieldTrips = this.getFieldTrips.bind(this);
-  //   this.setUser = this.setUser.bind(this);
-  //   this.setCourse = this.setCourse.bind(this);
-  //   this.setLessonId = this.setLessonId.bind(this);
-  // }
 
   getLessons(courseId) {
     fetch(`/api/courses/${courseId}`)

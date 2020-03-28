@@ -47,7 +47,7 @@ export default class Header extends React.Component {
             // onClick={() => this.props.setView('myCourses')}
             // onClick={() => this.props.setView('searchCourses')}
               className="fas fa-angle-left fa-3x mr-3"></i>
-            <p className="h2"> My Lessons</p>
+            <p className="h2"> Lessons</p>
           </div>
         );
     }
