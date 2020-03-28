@@ -215,11 +215,13 @@ app.get('/api/users_field_trips/:userId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// GET - View Course Details
+// GET - View Course Details (Lesson List)
 app.get('/api/courses/:courseId', (req, res, next) => {
   const sql = `
   select "lessons"."name",
-    "lessons"."lessonId"
+    "lessons"."lessonId",
+    "lessons"."heading",
+    "lessons"."body"
   from "lessons"
   join "courses" using("courseId")
   where "courses"."courseId" = $1
@@ -277,7 +279,7 @@ app.get('/api/users_courses/:userId/:courseId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// GET - View Lessons
+// GET - View Lesson Details
 app.get('/api/lessons/:lessonId', (req, res, next) => {
   const lessonId = req.params.lessonId;
   const sql = `
@@ -293,15 +295,13 @@ app.get('/api/lessons/:lessonId', (req, res, next) => {
 
 // GET - Search Categories
 app.get('/api/categories', (req, res, next) => {
-  const categoryName = req.body.categoryName;
   const sql = `
 select "categoryId",
        "categoryName"
 from   "categories"
-where  "categoryName" ilike $1 || '%'
+order by "categoryName"
 `;
-  const value = [categoryName];
-  db.query(sql, value)
+  db.query(sql)
     .then(result => {
       if (!result.rows[0]) {
         return res.status(404).json({
@@ -315,20 +315,23 @@ where  "categoryName" ilike $1 || '%'
 });
 
 // GET - Search Courses by Category
-app.get('/api/courses', (req, res, next) => {
-  const categoryName = req.body.categoryName;
+app.get('/api/courseCategories/:categoryName', (req, res, next) => {
+  const categoryName = req.params.categoryName;
   const sql = `
 select  "courses"."name",
+        "courses"."courseId",
+        "courses"."description",
         "categories"."categoryName"
 from    "courses"
 join    "categories" using ("categoryId")
 where   "categoryName" = $1
 `;
+
   const value = [categoryName];
   db.query(sql, value)
     .then(result => {
       if (!result.rows[0]) {
-        return res.status(404).json({
+        return res.json({
           error: 'Courses not found'
         });
       } else {
