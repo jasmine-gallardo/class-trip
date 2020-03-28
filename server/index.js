@@ -215,7 +215,7 @@ app.get('/api/users_field_trips/:userId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// GET - View Course Details
+// GET - View Course Details (Lesson List)
 app.get('/api/courses/:courseId', (req, res, next) => {
   const sql = `
   select "lessons"."name",
@@ -277,7 +277,7 @@ app.get('/api/users_courses/:userId/:courseId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// GET - View Lessons
+// GET - View Lesson Details
 app.get('/api/lessons/:lessonId', (req, res, next) => {
   const lessonId = req.params.lessonId;
   const sql = `

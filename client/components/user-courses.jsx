@@ -1,4 +1,5 @@
 import React from 'react';
+import Course from './course';
 
 export default class UserCourses extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ export default class UserCourses extends React.Component {
                 userId={this.props.userId}
                 courseId={course.courseId}
                 setView={this.props.setView}
+                setCourse={this.props.setCourse}
               />
             );
           })
@@ -44,18 +46,4 @@ export default class UserCourses extends React.Component {
       </div>
     );
   }
-}
-
-function Course(props) {
-  const courseName = props.name;
-
-  return (
-    <div className="w-100 d-flex justify-content-center">
-      <button
-        onClick={() => props.setView('myLessons')}
-        className="w-100 btn-block btn-warning text-light h4 mb-3 rounded">
-        {courseName}
-      </button>
-    </div>
-  );
 }
