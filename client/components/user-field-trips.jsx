@@ -1,9 +1,6 @@
 import React from 'react';
 
 export default class UserFieldTrips extends React.Component {
-  componentDidMount() {
-    this.props.getFieldTrips(this.props.userId);
-  }
 
   render() {
     if (!this.props.fieldTrips[0]) {
