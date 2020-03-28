@@ -55,6 +55,7 @@ export default class SearchCourses extends React.Component {
       categoryName: '',
       courses: []
     });
+    this.getCategories();
   }
 
   render() {
@@ -78,23 +79,23 @@ export default class SearchCourses extends React.Component {
               })}
             </datalist>
           </div>
-          <div className="mb-1">Category: {this.state.categoryName}</div>
-          {this.state.courses.map((course, key) => {
-            return (
-              <CourseSearchResult
-                key={course.courseId}
-                courses={this.state.courses}
-                name={course.name}
-                courseDesc={course.description}
-                courseId={course.courseId}
-                userName={this.props.userName}
-                userId={this.props.userId}
-                setView={this.props.setView}
-                setCourse={this.props.setCourse}
-              />
-            );
-          })}
         </form>
+        <div className="mb-1">Category: {this.state.categoryName}</div>
+        {this.state.courses.map((course, key) => {
+          return (
+            <CourseSearchResult
+              key={course.courseId}
+              courses={this.state.courses}
+              name={course.name}
+              courseDesc={course.description}
+              courseId={course.courseId}
+              userName={this.props.userName}
+              userId={this.props.userId}
+              setView={this.props.setView}
+              setCourse={this.props.setCourse}
+            />
+          );
+        })}
       </div >
     );
   }
