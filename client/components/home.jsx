@@ -10,7 +10,7 @@ export default function Home(props) {
       </div>
       <div className="search-buttons mt-5 mb-5 d-flex justify-content-center align-items-center">
         <button
-          onClick={() => props.setView('courses')}
+          onClick={() => props.setView('searchCourses')}
           className="courses pt-5 pb-5 pr-4 pl-4 mr-1 text-light h4" type="submit">Courses</button>
         <button
           onClick={() => props.setView('fieldTrips')}
