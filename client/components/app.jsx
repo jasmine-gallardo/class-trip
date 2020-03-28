@@ -25,6 +25,7 @@ export default class App extends React.Component {
     this.getFieldTrips = this.getFieldTrips.bind(this);
     this.setUser = this.setUser.bind(this);
     this.setCourse = this.setCourse.bind(this);
+    this.setLessonId = this.setLessonId.bind(this);
   }
 
   getLessons(courseId) {
@@ -80,6 +81,10 @@ export default class App extends React.Component {
     });
   }
 
+  setLessonId(lessonId) {
+    this.setState({ lessonId });
+  }
+
   setFieldTrip(fieldTripId) {
     this.setState({
       fieldTrip: { fieldTripId }
@@ -99,7 +104,7 @@ export default class App extends React.Component {
         <UserCourses setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'myLessons': view =
-        <UserLessons setView={this.setView} getLessons={this.getLessons} lessons={this.state.lessons} courseId={this.state.course.courseId} userId={this.state.user.userId}/>;
+        <UserLessons setView={this.setView} setLessonId={this.setLessonId} getLessons={this.getLessons} lessons={this.state.lessons} courseId={this.state.course.courseId} userId={this.state.user.userId}/>;
         break;
       case 'myFieldTrips': view =
         <UserFieldTrips setView={this.setView} getFieldTrips={this.getFieldTrips} fieldTrips={this.state.allFieldTrips} userName={this.state.user.userName} userId={this.state.user.userId} courseId={this.state.course.courseId}/>;
