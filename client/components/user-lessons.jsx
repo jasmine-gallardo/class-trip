@@ -45,8 +45,10 @@ export default class UserLessons extends React.Component {
               return (
                 <LessonButton
                   key={lesson.lessonId}
+                  lessonId={lesson.lessonId}
                   name={lesson.name}
                   setView={this.props.setView}
+                  setLessonId={this.props.setLessonId}
                 />
               );
             })
@@ -65,8 +67,10 @@ export default class UserLessons extends React.Component {
             return (
               <LessonButton
                 key={lesson.lessonId}
+                lessonId={lesson.lessonId}
                 name={lesson.name}
                 setView={this.props.setView}
+                setLessonId={this.props.setLessonId}
               />
             );
           })
