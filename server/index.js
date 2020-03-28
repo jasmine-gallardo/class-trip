@@ -219,7 +219,9 @@ app.get('/api/users_field_trips/:userId', (req, res, next) => {
 app.get('/api/courses/:courseId', (req, res, next) => {
   const sql = `
   select "lessons"."name",
-    "lessons"."lessonId"
+    "lessons"."lessonId",
+    "lessons"."heading",
+    "lessons"."body"
   from "lessons"
   join "courses" using("courseId")
   where "courses"."courseId" = $1

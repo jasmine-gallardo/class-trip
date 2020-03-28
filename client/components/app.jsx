@@ -5,6 +5,7 @@ import UserCourses from './user-courses';
 import UserLessons from './user-lessons';
 import UserFieldTrips from './user-field-trips';
 import FieldTripForm from './field-trip-form';
+import LessonDetails from './lesson-details';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -15,7 +16,8 @@ export default class App extends React.Component {
       course: { courseId: null },
       fieldTrip: { fieldTripId: null },
       allFieldTrips: [],
-      lessons: []
+      lessons: [],
+      lessonId: null
     };
     this.setView = this.setView.bind(this);
     this.addFieldTrip = this.addFieldTrip.bind(this);
@@ -104,6 +106,9 @@ export default class App extends React.Component {
         break;
       case 'planFieldTrip': view =
         <FieldTripForm setView={this.setView} addFieldTrip={this.addFieldTrip} user={this.state.user}/>;
+        break;
+      case 'lessonDetails': view =
+        <LessonDetails setView={this.setView} lessonId={this.state.lessonId}/>;
     }
     return (
       <div>
