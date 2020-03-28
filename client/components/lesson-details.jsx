@@ -5,14 +5,14 @@ export default class LessonDetails extends React.Component {
     this.state = {
       lesson: {}
     };
-    this.getLessonDetials = this.getLessonDetials.bind(this);
+    this.getLessonDetails = this.getLessonDetails.bind(this);
   }
 
   componentDidMount() {
-    this.getLessonDetials(this.props.lessonId);
+    this.getLessonDetails(this.props.lessonId);
   }
 
-  getLessonDetials(lessonId) {
+  getLessonDetails(lessonId) {
     fetch(`/api/lessons/${lessonId}`)
       .then(res => res.json())
       .then(lessonsObject => this.setState({ lesson: lessonsObject }))
