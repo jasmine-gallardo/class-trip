@@ -99,7 +99,7 @@ export default class App extends React.Component {
         <UserList setView={this.setView} setUser={this.setUser}/>;
         break;
       case 'loggedIn': view =
-        <Home setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId} />;
+        <Home setView={this.setView} getFieldTrips={this.getFieldTrips} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'searchCourses': view =
         <SearchCourses setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
