@@ -1,12 +1,6 @@
 import React from 'react';
 
 export default class Header extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //   previousPage: []
-  //   }
-  // }
 
   getHeaderContent() {
     switch (this.props.view) {
@@ -15,6 +9,13 @@ export default class Header extends React.Component {
         return (
           <p className="m-auto text-light h4"><i className="fas fa-globe-americas"></i>
             <i className="fas fa-copyright ml-n1"></i><span className="mb-2">lassroom</span></p>
+        );
+      case 'searchCourses':
+        return (
+          <div className="w-70 m-auto p-2 d-flex justify-content-center justify-content-between">
+            <i className="fas fa-search fa-3x mr-3"></i>
+            <p className="h2"> Search for Courses</p>
+          </div>
         );
       case 'myCourses':
         return (
@@ -40,14 +41,21 @@ export default class Header extends React.Component {
       case 'myLessons':
         return (
           <div className="w-70 m-auto p-2 d-flex justify-content-center justify-content-between">
-            <i
-            // Depending on the previous page (passed in as props), different onClicks would result:
-            // onClick={() => this.props.setView(this.props.previousPage)}
-            // For example:
-            // onClick={() => this.props.setView('myCourses')}
-            // onClick={() => this.props.setView('searchCourses')}
-              className="fas fa-angle-left fa-3x mr-3"></i>
+            <div onClick={() => this.props.setView(this.props.backPage)}>
+              <i
+                className="fas fa-angle-left fa-3x mr-3"></i>
+            </div>
             <p className="h2"> Lessons</p>
+          </div>
+        );
+      case 'lessonDetails':
+        return (
+          <div className="w-70 m-auto p-2 d-flex justify-content-center justify-content-between">
+            <div onClick={() => this.props.setView('myLessons')}>
+              <i
+                className="fas fa-angle-left fa-3x mr-3"></i>
+            </div>
+            <p className="h2"> Details</p>
           </div>
         );
     }

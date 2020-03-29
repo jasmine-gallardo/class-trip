@@ -14,10 +14,15 @@ export default class Course extends React.Component {
   render() {
     const courseName = this.props.name;
     const courseId = this.props.courseId;
+    const backPage = this.props.currentPage;
     return (
       <div className="w-100 d-flex justify-content-center">
         <button
-          onClick={() => this.setViewAndCourseId('myLessons', courseId)}
+          onClick={() => {
+            this.setViewAndCourseId('myLessons', courseId);
+            this.props.setBackPage(backPage);
+          }
+          }
           className="w-100 btn-block btn-warning text-light h4 mb-3 rounded">
           {courseName}
         </button>

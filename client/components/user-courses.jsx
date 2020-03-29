@@ -37,6 +37,8 @@ export default class UserCourses extends React.Component {
                 courseId={course.courseId}
                 setView={this.props.setView}
                 setCourse={this.props.setCourse}
+                setBackPage={this.props.setBackPage}
+                currentPage='myCourses'
               />
             );
           })

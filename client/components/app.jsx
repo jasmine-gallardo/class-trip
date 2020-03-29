@@ -15,13 +15,13 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: { name: 'users' },
-      headerView: { name: 'appLogo' },
       user: { userName: '', userId: null },
       course: { courseId: null },
       fieldTrip: { fieldTripId: null },
       allFieldTrips: [],
       lessons: [],
-      lessonId: null
+      lessonId: null,
+      backPage: null
     };
     this.getLessons = this.getLessons.bind(this);
     this.getFieldTrips = this.getFieldTrips.bind(this);
@@ -32,6 +32,7 @@ export default class App extends React.Component {
     this.setLessons = this.setLessons.bind(this);
     this.setLessonId = this.setLessonId.bind(this);
     this.setFieldTrip = this.setFieldTrip.bind(this);
+    this.setBackPage = this.setBackPage.bind(this);
   }
 
   getLessons(courseId) {
@@ -97,6 +98,10 @@ export default class App extends React.Component {
     });
   }
 
+  setBackPage(backPage) {
+    this.setState({ backPage });
+  }
+
   render() {
     let view;
     switch (this.state.view.name) {
@@ -107,16 +112,16 @@ export default class App extends React.Component {
         <Home setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'searchCourses': view =
-        <SearchCourses setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
+        <SearchCourses setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'myCourses': view =
-        <UserCourses setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
+        <UserCourses setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'myLessons': view =
         <UserLessons setView={this.setView} setLessonId={this.setLessonId} getLessons={this.getLessons} lessons={this.state.lessons} courseId={this.state.course.courseId} userId={this.state.user.userId}/>;
         break;
       case 'myFieldTrips': view =
-       <UserFieldTrips setView={this.setView} getFieldTrips={this.getFieldTrips} allFieldTrips={this.state.allFieldTrips} userName={this.state.user.userName} userId={this.state.user.userId}/>;
+       <UserFieldTrips setView={this.setView} getFieldTrips={this.getFieldTrips} fieldTrips={this.state.allFieldTrips} userName={this.state.user.userName} userId={this.state.user.userId}/>;
         break;
       case 'planFieldTrip': view =
         <FieldTripForm setView={this.setView} addFieldTrip={this.addFieldTrip} user={this.state.user}/>;
@@ -126,11 +131,10 @@ export default class App extends React.Component {
     }
     return (
       <div>
-        <Header setView={this.setView} view={this.state.view.name} />
+        <Header setView={this.setView} view={this.state.view.name} backPage={this.state.backPage} />
         <div className="component-body p-4 pt-5">
           {view}
         </div>
-        {/* <footer className="bg-secondary d-flex justify-content-between p-5"></footer> */}
         <Navbar setView={this.setView} view={this.state.view.name} />
       </div>
     );

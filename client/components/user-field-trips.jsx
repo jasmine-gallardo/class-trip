@@ -7,7 +7,7 @@ export default class UserFieldTrips extends React.Component {
   }
 
   render() {
-    if (!this.props.allFieldTrips[0]) {
+    if (!this.props.fieldTrips[0]) {
       return <p>Looks like you need more field trips!</p>;
     }
     return (
@@ -18,7 +18,7 @@ export default class UserFieldTrips extends React.Component {
 
         </div>
         {
-          this.props.allFieldTrips.map(fieldTrip => {
+          this.props.fieldTrips.map(fieldTrip => {
             return (
               <FieldTrip
                 key={fieldTrip.fieldTripId}
