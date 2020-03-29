@@ -3,12 +3,13 @@ import React from 'react';
 export default class CourseSearchResult extends React.Component {
   constructor(props) {
     super(props);
-    this.setViewAndCourseId = this.setViewAndCourseId.bind(this);
+    this.setNextPage = this.setNextPage.bind(this);
   }
 
-  setViewAndCourseId(viewName, courseId) {
+  setNextPage(viewName, courseId, backPage) {
     this.props.setView(viewName);
     this.props.setCourse(courseId);
+    this.props.setBackPage(backPage);
   }
 
   render() {
@@ -28,11 +29,7 @@ export default class CourseSearchResult extends React.Component {
             </div>
           </div>
           <button
-            onClick={() => {
-              this.setViewAndCourseId('myLessons', courseId);
-              this.props.setBackPage(backPage);
-            }
-            }
+            onClick={() => { this.setNextPage('myLessons', courseId, backPage); }}
             type="button" className="btn btn-dark my-1"> INFO </button>
         </div>
       </div>
