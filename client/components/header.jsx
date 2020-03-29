@@ -38,6 +38,13 @@ export default class Header extends React.Component {
             <p className="h2"> Plan Field Trip</p>
           </div>
         );
+      case 'editFieldTrip':
+        return (
+          <div className="w-70 m-auto p-2 d-flex justify-content-center justify-content-between">
+            <i className="fas fa-edit fa-3x mr-3"></i>
+            <p className="h2"> Edit Field Trip</p>
+          </div>
+        );
       case 'myLessons':
         return (
           <div className="w-70 m-auto p-2 d-flex justify-content-center justify-content-between">
