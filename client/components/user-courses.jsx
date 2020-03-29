@@ -25,8 +25,6 @@ export default class UserCourses extends React.Component {
     return (
       <div className="h-75 d-flex flex-wrap justify-content-center">
         <div className="w-50 m-auto p-2 d-flex justify-content-center justify-content-between">
-          <i className="far fa-bookmark fa-3x"></i>
-          <p className="h2">Courses</p>
         </div>
         {
           this.state.courses.map(course => {
@@ -39,6 +37,8 @@ export default class UserCourses extends React.Component {
                 courseId={course.courseId}
                 setView={this.props.setView}
                 setCourse={this.props.setCourse}
+                setBackPage={this.props.setBackPage}
+                currentPage='myCourses'
               />
             );
           })
