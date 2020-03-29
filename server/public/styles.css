@@ -49,3 +49,8 @@ header {
   border-radius: 20px;
   color: white;
 }
+
+/* Lesson Details */
+.lesson-details-header {
+  font-family: 'Open Sans', sans-serif;
+}
