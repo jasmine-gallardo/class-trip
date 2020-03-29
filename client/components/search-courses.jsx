@@ -43,7 +43,7 @@ export default class SearchCourses extends React.Component {
         res.json())
       .then(coursesArray => {
         this.setState({
-          courses: coursesArray
+          courses: coursesArray.courses
         });
       })
       .catch(err => console.error(err));
@@ -93,6 +93,8 @@ export default class SearchCourses extends React.Component {
               userId={this.props.userId}
               setView={this.props.setView}
               setCourse={this.props.setCourse}
+              setBackPage={this.props.setBackPage}
+              currentPage={'searchCourses'}
             />
           );
         })}
