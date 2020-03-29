@@ -43,7 +43,7 @@ export default class SearchCourses extends React.Component {
         res.json())
       .then(coursesArray => {
         this.setState({
-          courses: coursesArray
+          courses: coursesArray.courses
         });
       })
       .catch(err => console.error(err));
@@ -64,7 +64,7 @@ export default class SearchCourses extends React.Component {
         <form onReset={this.handleReset} autoComplete="off">
           <div className="mb-3" id="for-cat-search" >
             <label htmlFor="search-cat">Search by Category:</label>
-            <input onChange={this.handleChangeSelection} className="search-box mr-3"
+            <input onSelect={this.handleChangeSelection} className="search-box mr-3"
               list="categories" id="cat-search" name="category-search" />
             <button
               className="p-1"
