@@ -341,6 +341,7 @@ where   "categoryName" = $1
     .catch(err => next(err));
 });
 
+// POST - Add New Field Trip
 app.post('/api/field_trips', (req, res, next) => {
   const fieldTripName = req.body.name;
   const description = req.body.description;
