@@ -9,7 +9,7 @@ export default class SearchCourses extends React.Component {
       categoryName: '',
       courses: []
     };
-    this.handleChangeSelect = this.handleChangeSelect.bind(this);
+    this.handleChangeSelection = this.handleChangeSelection.bind(this);
     this.handleGetCourses = this.handleGetCourses.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
@@ -28,7 +28,7 @@ export default class SearchCourses extends React.Component {
       .catch(err => console.error(err));
   }
 
-  handleChangeSelect(event) {
+  handleChangeSelection(event) {
     this.setState({
       categoryName: event.target.value
     });
@@ -64,7 +64,7 @@ export default class SearchCourses extends React.Component {
         <form onReset={this.handleReset} autoComplete="off">
           <div className="mb-3" id="for-cat-search" >
             <label htmlFor="search-cat">Search by Category:</label>
-            <input onChange={this.handleChangeSelect} className="search-box mr-3"
+            <input onChange={this.handleChangeSelection} className="search-box mr-3"
               list="categories" id="cat-search" name="category-search" />
             <button
               className="p-1"
