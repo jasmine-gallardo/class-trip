@@ -61,7 +61,7 @@ export default class SearchCourses extends React.Component {
   render() {
     return (
       <div className=" d-flex flex-column">
-        <form onReset={this.handleReset}>
+        <form onReset={this.handleReset} autoComplete="off">
           <div className="mb-3" id="for-cat-search" >
             <label htmlFor="search-cat">Search by Category:</label>
             <input onSelect={this.handleChangeSelect} className="search-box mr-3"
