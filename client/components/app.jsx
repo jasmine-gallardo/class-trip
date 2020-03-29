@@ -6,6 +6,7 @@ import SearchCourses from './search-courses';
 import UserLessons from './user-lessons';
 import UserFieldTrips from './user-field-trips';
 import FieldTripForm from './field-trip-form';
+import EditFieldTrip from './edit-field-trip';
 import LessonDetails from './lesson-details';
 import Header from './header';
 import Navbar from './navbar';

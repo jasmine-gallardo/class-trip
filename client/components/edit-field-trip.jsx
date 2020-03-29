@@ -6,6 +6,6 @@ export default class EditFieldTrip extends React.Component {
   }
 
   render() {
-    return ('hello')
+    return ('hello');
   }
 }
