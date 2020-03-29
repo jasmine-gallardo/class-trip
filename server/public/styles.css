@@ -54,3 +54,7 @@ header {
 .open-sans {
   font-family: 'Open Sans', sans-serif;
 }
+
+.user-button {
+  border-radius: 15px;
+}

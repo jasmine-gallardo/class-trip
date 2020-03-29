@@ -15,10 +15,10 @@ export default class User extends React.Component {
     const userName = this.props.name;
     const userId = this.props.userId;
     return (
-      <div className="w-75 d-flex justify-content-center">
+      <div className="w-50 h-25 mb-5 d-flex justify-content-center align-items-center m-auto">
         <button
           onClick={() => this.setViewAndUser('loggedIn', userName, userId)}
-          className="w-75 h-75 shadow btn btn-secondary btn-lg mb-3 open-sans">
+          className="user-button w-100 h-75 shadow-sm btn btn-lg btn-info mb-3 open-sans">
           {userName}
         </button>
       </div>
