@@ -127,6 +127,9 @@ export default class App extends React.Component {
       case 'planFieldTrip': view =
         <FieldTripForm setView={this.setView} addFieldTrip={this.addFieldTrip} user={this.state.user}/>;
         break;
+      case 'editFieldTrip': view =
+        <EditFieldTrip setView={this.setView} user={this.state.user}/>;
+        break;
       case 'lessonDetails': view =
         <LessonDetails setView={this.setView} lessonId={this.state.lessonId}/>;
     }
