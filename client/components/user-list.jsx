@@ -25,8 +25,8 @@ export default class UserList extends React.Component {
     return (
       <div className="h-75 d-flex flex-wrap justify-content-center">
         <div className="w-50 m-auto p-2 d-flex justify-content-center justify-content-between">
-          <i className="fas fa-user fa-3x"></i>
-          <p className="h2">Log In</p>
+          <i className="fas fa-user fa-3x text-info"></i>
+          <p className="open-sans text-info h2">Log In</p>
         </div>
         {
           this.state.users.map(user => {

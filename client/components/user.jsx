@@ -18,7 +18,7 @@ export default class User extends React.Component {
       <div className="w-75 d-flex justify-content-center">
         <button
           onClick={() => this.setViewAndUser('loggedIn', userName, userId)}
-          className="w-100 btn-lrg btn-warning text-light h2 mb-3 rounded">
+          className="w-75 h-75 shadow btn btn-secondary btn-lg mb-3 open-sans">
           {userName}
         </button>
       </div>
