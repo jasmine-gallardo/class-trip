@@ -9,7 +9,7 @@ export default class SearchCourses extends React.Component {
       categoryName: '',
       courses: []
     };
-    this.handleChangeSelect = this.handleChangeSelect.bind(this);
+    this.handleChangeSelection = this.handleChangeSelection.bind(this);
     this.handleGetCourses = this.handleGetCourses.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
@@ -28,7 +28,7 @@ export default class SearchCourses extends React.Component {
       .catch(err => console.error(err));
   }
 
-  handleChangeSelect(event) {
+  handleChangeSelection(event) {
     this.setState({
       categoryName: event.target.value
     });
@@ -55,28 +55,31 @@ export default class SearchCourses extends React.Component {
       categoryName: '',
       courses: []
     });
+    this.getCategories();
   }
 
   render() {
     return (
       <div className=" d-flex flex-column">
-        <div className="mb-3" id="for-cat-search" >
-          <label htmlFor="search-cat">Search by Category:</label>
-          <input onSelect={this.handleChangeSelect} className="search-box mr-3"
-            list="categories" id="cat-search" name="category-search" />
-          <button
-            className="p-1"
-            onClick={this.handleReset}
-            id="clear-select" type="button">
+        <form onReset={this.handleReset} autoComplete="off">
+          <div className="mb-3" id="for-cat-search" >
+            <label htmlFor="search-cat">Search by Category:</label>
+            <input onChange={this.handleChangeSelection} className="search-box mr-3"
+              list="categories" id="cat-search" name="category-search" />
+            <button
+              className="p-1"
+              type="reset"
+              id="clear-select">
               Reset</button>
-          <datalist id="categories" >
-            {this.state.categories.map((cat, key) => {
-              return (
-                <option key={cat.categoryId} value={cat.categoryName} >
-                  {cat.categoryName} </option>);
-            })}
-          </datalist>
-        </div>
+            <datalist id="categories" >
+              {this.state.categories.map((cat, key) => {
+                return (
+                  <option key={cat.categoryId} value={cat.categoryName} >
+                    {cat.categoryName} </option>);
+              })}
+            </datalist>
+          </div>
+        </form>
         <div className="mb-1">Category: {this.state.categoryName}</div>
         {this.state.courses.map((course, key) => {
           return (

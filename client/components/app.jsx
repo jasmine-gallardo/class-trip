@@ -109,7 +109,7 @@ export default class App extends React.Component {
         <UserList setView={this.setView} setUser={this.setUser}/>;
         break;
       case 'loggedIn': view =
-        <Home setView={this.setView} userName={this.state.user.userName} userId={this.state.user.userId} />;
+        <Home setView={this.setView} getFieldTrips={this.getFieldTrips} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'searchCourses': view =
         <SearchCourses setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
@@ -132,7 +132,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Header setView={this.setView} view={this.state.view.name} backPage={this.state.backPage} />
-        <div className="component-body p-4 pt-5">
+        <div className="component-body p-4 pt-5 overflow-auto">
           {view}
         </div>
         <Navbar setView={this.setView} view={this.state.view.name} />
