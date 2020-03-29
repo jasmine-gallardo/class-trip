@@ -43,7 +43,7 @@ export default class SearchCourses extends React.Component {
         res.json())
       .then(coursesArray => {
         this.setState({
-          courses: coursesArray
+          courses: coursesArray.courses
         });
       })
       .catch(err => console.error(err));
