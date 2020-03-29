@@ -19,8 +19,8 @@ export default class Course extends React.Component {
     return (
       <div className="w-100 d-flex justify-content-center">
         <button
-          onClick={() => { this.setNextPage('myLessons', courseId, backPage); }}
-          className="w-100 btn-block btn-warning text-light h4 mb-3 rounded">
+          onClick={() => this.setNextPage('myLessons', courseId, backPage)}
+          className="w-100 btn-block btn-info shadow text-light h4 mb-3 rounded">
           {courseName}
         </button>
       </div>
