@@ -22,7 +22,7 @@ export default class LessonDetails extends React.Component {
   render() {
     return (
       <div className="h-100 p-2">
-        <h2 className="lesson-details-header mb-5 text-info text-center display-4">{this.state.lesson.heading}</h2>
+        <p className="open-sans display-4 mb-5 text-info text-center">{this.state.lesson.heading}</p>
         <div className="mb-5 lead text-secondary">
           {this.state.lesson.body}
         </div>
