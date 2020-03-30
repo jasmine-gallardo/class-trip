@@ -8,7 +8,7 @@ export default class Navbar extends React.Component {
   }
 
   getSearchClass() {
-    if (this.props.view === 'searchCourses' || this.props.view === 'users') {
+    if (this.props.view === 'generalSearch' || this.props.view === 'users') {
       return 'd-none';
     }
   }
@@ -36,7 +36,7 @@ export default class Navbar extends React.Component {
           <i
             className="fas fa-home fa-3x"></i>
         </div>
-        <div className={this.getSearchClass()} onClick={() => this.props.setView('searchCourses')}>
+        <div className={this.getSearchClass()} onClick={() => this.props.setView('generalSearch')}>
           <i
             className="fas fa-search fa-3x"></i>
         </div>
