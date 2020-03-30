@@ -148,7 +148,7 @@ app.delete('/api/fieldTrips/:fieldTripId', (req, res, next) => {
 });
 
 // PUT - Edit Field Trip
-app.put('/api/fieldTrips/:fieldTripId', (req, res, next) => {
+app.put('/api/editFieldTrips/:fieldTripId', (req, res, next) => {
   const fT = req.body;
   const fTId = req.params.fieldTripId;
   if (!parseInt(fTId, 10) || !fT.fieldTripName || !fT.address || !fT.city || !fT.date || !fT.time || !fT.description) {

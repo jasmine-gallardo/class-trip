@@ -65,6 +65,24 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  updateFieldTrip(fieldTripId) {
+    const newArray = [...this.state.allFieldTrips];
+    // const currentId = newArray.find(element => element.id === fieldTripId);
+    const req = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedFieldTrip)
+    };
+    fetch(`/api/editFieldTrips/${fieldTripId}`, req)
+      .then(res => res.json())
+      .then(updatedFieldTrip => {
+        const ftIndex = newArray.findIndex(element => element.id === fieldTripId);
+        newArray.splice(ftIndex, 1, updatedFieldTrip);
+        this.setState({ allFieldTrips: newArray });
+      })
+      .catch(err => console.error(err));
+  }
+
   setView(name) {
     this.setState({
       view: { name }
@@ -128,7 +146,7 @@ export default class App extends React.Component {
         <FieldTripForm setView={this.setView} addFieldTrip={this.addFieldTrip} user={this.state.user}/>;
         break;
       case 'editFieldTrip': view =
-        <EditFieldTrip setView={this.setView} user={this.state.user}/>;
+        <EditFieldTrip setView={this.setView} user={this.state.user} updateFieldTrip={this.updateFieldTrip} fieldTripId={this.state.fieldTrip.fieldTripId} />;
         break;
       case 'lessonDetails': view =
         <LessonDetails setView={this.setView} lessonId={this.state.lessonId}/>;
