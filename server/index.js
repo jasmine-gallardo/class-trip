@@ -345,6 +345,18 @@ where   "categoryName" = $1
     .catch(err => next(err));
 });
 
+// POST - Take Course
+app.post('/api/users_courses/:userId/:courseId', (req, res, next) => {
+  const sql = `
+  insert into "users_courses" ("userId", "courseId")
+  values ($1, $2)
+  returning *
+  `;
+  db.query(sql, [parseInt(req.params.userId, 10), parseInt(req.params.courseId, 10)])
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
 // POST - Add New Field Trip
 app.post('/api/field_trips', (req, res, next) => {
   const fieldTripName = req.body.name;
