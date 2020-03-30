@@ -63,17 +63,17 @@ export default class SearchCourses extends React.Component {
       <div className="d-flex flex-column">
         <form onReset={this.handleReset} autoComplete="off">
           <div className="mb-4 text-center" id="for-cat-search" >
-            <label className="h4 mb-3" htmlFor="search-cat">Search by Category:</label>
+            <label htmlFor="search-cat"></label>
             <input onChange={this.handleChangeSelection} className="search-box mr-3"
-              list="categories" id="cat-search" name="category-search" />
+              list="categories" id="cat-search" name="category-search" placeholder="Search by Category"/>
             <button
-              className="p-2 btn btn-info" type="reset" id="clear-select">
-              Reset</button>
+              className="p-2 btn btn-info" type="reset" id="clear-select"> Reset</button>
             <datalist id="categories" >
               {this.state.categories.map((cat, key) => {
                 return (
                   <option key={cat.categoryId} value={cat.categoryName} >
-                    {cat.categoryName} </option>);
+                    {cat.categoryName}
+                  </option>);
               })}
             </datalist>
           </div>
