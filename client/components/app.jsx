@@ -9,6 +9,7 @@ import FieldTripForm from './field-trip-form';
 import LessonDetails from './lesson-details';
 import Header from './header';
 import Navbar from './navbar';
+import GeneralSearch from './general-search';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -128,6 +129,9 @@ export default class App extends React.Component {
         break;
       case 'lessonDetails': view =
         <LessonDetails setView={this.setView} lessonId={this.state.lessonId}/>;
+        break;
+      case 'generalSearch': view =
+        <GeneralSearch setView={this.setView}/>;
     }
     return (
       <div>
