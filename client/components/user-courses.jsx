@@ -28,6 +28,7 @@ export default class UserCourses extends React.Component {
                 setBackPage={this.props.setBackPage}
                 currentPage='myCourses'
                 getLessons={this.props.getLessons}
+                setLessons={this.props.setLessons}
               />
             );
           })

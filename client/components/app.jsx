@@ -32,6 +32,7 @@ export default class App extends React.Component {
     this.setUser = this.setUser.bind(this);
     this.setCourse = this.setCourse.bind(this);
     this.setLessons = this.setLessons.bind(this);
+
     this.setLessonId = this.setLessonId.bind(this);
     this.setFieldTrip = this.setFieldTrip.bind(this);
     this.setBackPage = this.setBackPage.bind(this);
@@ -93,9 +94,8 @@ export default class App extends React.Component {
   }
 
   setLessons(lessons) {
-    this.setState({
-      lessons: []
-    });
+    this.setState({ lessons });
+
   }
 
   setLessonId(lessonId) {
@@ -125,7 +125,7 @@ export default class App extends React.Component {
         <SearchCourses setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'myCourses': view =
-        <UserCourses getLessons={this.getLessons} allCourses={this.state.allCourses} setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
+        <UserCourses setLessons={this.setLessons} getLessons={this.getLessons} allCourses={this.state.allCourses} setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'myLessons': view =
         <UserLessons setView={this.setView} setLessonId={this.setLessonId} lessons={this.state.lessons} courseId={this.state.course.courseId} userId={this.state.user.userId}/>;
