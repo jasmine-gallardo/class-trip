@@ -27,6 +27,7 @@ export default class App extends React.Component {
     this.getLessons = this.getLessons.bind(this);
     this.getFieldTrips = this.getFieldTrips.bind(this);
     this.addFieldTrip = this.addFieldTrip.bind(this);
+    this.updateFieldTrip = this.updateFieldTrip.bind(this);
     this.setView = this.setView.bind(this);
     this.setUser = this.setUser.bind(this);
     this.setCourse = this.setCourse.bind(this);
@@ -66,8 +67,8 @@ export default class App extends React.Component {
   }
 
   updateFieldTrip(fieldTripId) {
-    const newArray = [...this.state.allFieldTrips];
-    // const currentId = newArray.find(element => element.id === fieldTripId);
+    const newestFTArray = [...this.state.allFieldTrips];
+    console.log('all', this.state.allFieldTrips);
     const req = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -76,9 +77,9 @@ export default class App extends React.Component {
     fetch(`/api/editFieldTrips/${fieldTripId}`, req)
       .then(res => res.json())
       .then(updatedFieldTrip => {
-        const ftIndex = newArray.findIndex(element => element.id === fieldTripId);
-        newArray.splice(ftIndex, 1, updatedFieldTrip);
-        this.setState({ allFieldTrips: newArray });
+        const ftIndex = newestFTArray.findIndex(element => element.id === fieldTripId);
+        newestFTArray.splice(ftIndex, 1, updatedFieldTrip);
+        this.setState({ allFieldTrips: newestFTArray });
       })
       .catch(err => console.error(err));
   }
