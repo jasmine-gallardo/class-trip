@@ -4,6 +4,7 @@ export default class Home extends React.Component {
 
   componentDidMount() {
     this.props.getFieldTrips(this.props.userId);
+    this.props.getCourses(this.props.userId);
   }
 
   render() {

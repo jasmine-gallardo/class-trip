@@ -10,6 +10,7 @@ export default class Course extends React.Component {
     this.props.setView(viewName);
     this.props.setCourse(courseId);
     this.props.setBackPage(backPage);
+    // this.props.getLessons(courseId)
   }
 
   render() {
