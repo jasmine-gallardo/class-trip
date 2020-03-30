@@ -11,8 +11,7 @@ export default class Home extends React.Component {
     return (
       <div className="h-100">
         <div className="w-100 m-auto p-2 d-flex justify-content-center">
-          {/* <i className="fas fa-user fa-3x text-info"></i> */}
-          <p className="display-4 ml-2 mb-4 text-info">{userName}</p>
+          <p className="h1 open-sans ml-2 mb-4 text-info">{userName}</p>
         </div>
         <p className="w-75 h4 m-auto ">Search</p>
         <div className=" general h-25 mt-3 text-center">
