@@ -53,7 +53,7 @@ function FieldTrip(props) {
         <div className="d-flex flex-wrap align-items-center">
           <button
             onClick={() => props.setView('fieldTripDetails')}
-            type="button" className="btn btn-info my-1 "> INFO </button>
+            type="button" className="btn btn-dark my-1 "> INFO </button>
         </div>
       </div>
     </div>
