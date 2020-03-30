@@ -15,8 +15,8 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: { name: 'users' },
-      user: { userName: '', userId: null },
+      view: { name: 'generalSearch' },
+      user: { userName: '', userId: 2 },
       course: { courseId: null },
       fieldTrip: { fieldTripId: null },
       allFieldTrips: [],
@@ -122,7 +122,7 @@ export default class App extends React.Component {
         <Home setView={this.setView} getCourses={this.getCourses} getFieldTrips={this.getFieldTrips} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'searchCourses': view =
-        <SearchCourses setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
+        <SearchCourses setLessons={this.setLessons} setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'myCourses': view =
         <UserCourses setLessons={this.setLessons} getLessons={this.getLessons} allCourses={this.state.allCourses} setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
