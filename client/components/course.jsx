@@ -17,10 +17,10 @@ export default class Course extends React.Component {
     const courseId = this.props.courseId;
     const backPage = this.props.currentPage;
     return (
-      <div className="col-12 card p-3 mb-1 bg-light">
+      <div className="col-12 card p-3 mb-2 bg-light shadow-sm">
         <div className="row my-auto">
-          <div className="col-9 py-3 pl-5">
-            <div className="h4 open-sans mb-0">
+          <div className="col-9 py-3 pl-4">
+            <div className="h4 open-sans mb-0 text-secondary">
               {courseName}
             </div>
           </div>
