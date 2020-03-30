@@ -47,6 +47,6 @@ header {
   font-family: 'Palanquin Dark', sans-serif;
 }
 
-.user-button {
-  border-radius: 15px;
+.user-login {
+  font-size: 2rem;
 }
