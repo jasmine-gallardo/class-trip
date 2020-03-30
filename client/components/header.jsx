@@ -11,9 +11,13 @@ export default class Header extends React.Component {
         );
       case 'searchCourses':
         return (
-          <div className="w-70 m-auto p-2 d-flex justify-content-center justify-content-between">
-            <i className="fas fa-search fa-2x mr-3"></i>
-            <p className="h4 work-sans mb-0"> Search for Courses</p>
+          <div className="w-100 m-auto p-2 d-flex justify-content-center justify-content-between">
+            <div onClick={() => this.props.setView('generalSearch')}>
+              <i
+                className="fas fa-angle-left fa-3x m-auto pl-3 col-2"></i>
+            </div>
+            <p className="h4 work-sans m-auto col-10"> Search for Courses</p>
+
           </div>
         );
       case 'myCourses':

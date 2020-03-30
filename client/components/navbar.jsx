@@ -8,7 +8,7 @@ export default class Navbar extends React.Component {
   }
 
   getSearchClass() {
-    if (this.props.view === 'generalSearch' || this.props.view === 'users') {
+    if (this.props.view === 'generalSearch' || this.props.view === 'users' || this.props.view === 'myLessons' || this.props.view === 'lessonDetails') {
       return 'd-none';
     }
   }
