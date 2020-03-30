@@ -132,7 +132,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Header setView={this.setView} view={this.state.view.name} backPage={this.state.backPage} />
-        <div className="component-body p-4 pt-5 overflow-auto">
+        <div className="component-body p-4 pt-4 overflow-auto">
           {view}
         </div>
         <Navbar setView={this.setView} view={this.state.view.name} />

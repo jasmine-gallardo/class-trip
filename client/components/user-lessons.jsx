@@ -32,9 +32,9 @@ export default class UserLessons extends React.Component {
     }
     if (!this.state.enrollment) {
       return (
-        <div className="h-75 d-flex flex-wrap justify-content-center">
+        <div className="d-flex flex-column justify-content-center">
           <button
-            className="btn-block btn-danger mx-5 mt-n2">Take course
+            className="btn btn-lg text-light btn-warning mx-5 mb-4">Add Course
           </button>
           {
             this.props.lessons.map(lesson => {
@@ -53,7 +53,7 @@ export default class UserLessons extends React.Component {
       );
     }
     return (
-      <div className="h-75 d-flex flex-wrap justify-content-center">
+      <div className="d-flex flex-column justify-content-center">
         {
           this.props.lessons.map(lesson => {
             return (

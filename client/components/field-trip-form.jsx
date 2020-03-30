@@ -155,7 +155,7 @@ export default class FieldTripForm extends React.Component {
           <textarea onChange={this.handleChangeDescription} className="form-control" aria-label="With textarea" placeholder="Describe your field trip"></textarea>
         </div>
         <div className="text-center">
-          <button className="btn-lg btn-dark" type="submit">Add Field Trip</button>
+          <button className="btn btn-lg btn-info" type="submit">Add Field Trip</button>
         </div>
       </form>
     );

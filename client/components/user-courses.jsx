@@ -23,7 +23,7 @@ export default class UserCourses extends React.Component {
 
   render() {
     return (
-      <div className="h-75 d-flex flex-wrap justify-content-center">
+      <div className="d-flex flex-column justify-content-center">
         <div className="w-50 m-auto p-2 d-flex justify-content-center justify-content-between">
         </div>
         {
