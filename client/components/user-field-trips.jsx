@@ -1,4 +1,5 @@
 import React from 'react';
+import FieldTripButton from './field-trip-button';
 
 export default class UserFieldTrips extends React.Component {
 
@@ -16,7 +17,7 @@ export default class UserFieldTrips extends React.Component {
         {
           this.props.fieldTrips.map(fieldTrip => {
             return (
-              <FieldTrip
+              <FieldTripButton
                 key={fieldTrip.fieldTripId}
                 name={fieldTrip.fieldTripName}
                 fieldTripId={fieldTrip.fieldTripId}
@@ -26,6 +27,7 @@ export default class UserFieldTrips extends React.Component {
                 setView={this.props.setView}
                 address={fieldTrip.address}
                 city={fieldTrip.city}
+                setFieldTrip={this.props.setFieldTrip}
               />
             );
           })
@@ -33,29 +35,4 @@ export default class UserFieldTrips extends React.Component {
       </div>
     );
   }
-}
-
-function FieldTrip(props) {
-  return (
-    <div className="col-12 card p-3 mb-1 bg-light mb-2 open-sans">
-      <div className="row">
-        <div className="col-9">
-          <div className="h4 text-info">
-            {props.name}
-          </div>
-          <div className="desc">
-            {props.address}
-          </div>
-          <div className="desc">
-            {props.city}
-          </div>
-        </div>
-        <div className="d-flex flex-wrap align-items-center">
-          <button
-            onClick={() => props.setView('fieldTripDetails')}
-            type="button" className="btn btn-dark my-1 "> INFO </button>
-        </div>
-      </div>
-    </div>
-  );
 }

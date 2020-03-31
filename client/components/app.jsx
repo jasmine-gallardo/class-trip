@@ -10,6 +10,7 @@ import LessonDetails from './lesson-details';
 import Header from './header';
 import Navbar from './navbar';
 import GeneralSearch from './general-search';
+import FieldTripDetails from './field-trips-details';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -131,7 +132,7 @@ export default class App extends React.Component {
         <UserLessons setView={this.setView} setLessonId={this.setLessonId} lessons={this.state.lessons} courseId={this.state.course.courseId} userId={this.state.user.userId}/>;
         break;
       case 'myFieldTrips': view =
-       <UserFieldTrips setView={this.setView} getFieldTrips={this.getFieldTrips} fieldTrips={this.state.allFieldTrips} userName={this.state.user.userName} userId={this.state.user.userId}/>;
+       <UserFieldTrips setView={this.setView} getFieldTrips={this.getFieldTrips} setFieldTrip={this.setFieldTrip} fieldTrips={this.state.allFieldTrips} userName={this.state.user.userName} userId={this.state.user.userId}/>;
         break;
       case 'planFieldTrip': view =
         <FieldTripForm setView={this.setView} addFieldTrip={this.addFieldTrip} user={this.state.user}/>;
@@ -141,6 +142,9 @@ export default class App extends React.Component {
         break;
       case 'generalSearch': view =
         <GeneralSearch setView={this.setView}/>;
+        break;
+      case 'fieldTripDetails': view =
+        <FieldTripDetails setView={this.setView} fieldTripId={this.state.fieldTrip.fieldTripId}/>;
     }
     return (
       <div>
