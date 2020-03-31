@@ -105,7 +105,7 @@ export default class EditFieldTrip extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} onReset={this.handleReset}>
+      <form onSubmit={this.handleSubmit} onReset={this.handleReset} autoComplete="off">
         <div className="input-group-lg mb-2">
           <label className="d-block" htmlFor="fieldTripName">Name your field trip.</label>
           <input
