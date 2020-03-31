@@ -46,7 +46,7 @@ export default class EditFieldTrip extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const updatedFieldTrip = {
-      name: this.state.fieldTripName,
+      fieldTripName: this.state.fieldTripName,
       address: this.state.address,
       city: this.state.city,
       categoryId: this.state.category.categoryId,

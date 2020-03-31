@@ -16,9 +16,9 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: { name: 'editFieldTrip' },
-      user: { userName: '', userId: null },
+      user: { userName: 'Melissa', userId: 1 },
       course: { courseId: null },
-      fieldTrip: { fieldTripId: null },
+      fieldTrip: { fieldTripId: 1 },
       allFieldTrips: [],
       lessons: [],
       lessonId: null,
@@ -68,7 +68,6 @@ export default class App extends React.Component {
 
   updateFieldTrip(updatedFieldTrip, fieldTripId) {
     const newestFTArray = [...this.state.allFieldTrips];
-    console.log('all', this.state.allFieldTrips);
     const req = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
