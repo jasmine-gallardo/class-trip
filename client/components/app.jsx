@@ -161,7 +161,7 @@ export default class App extends React.Component {
         <UserLessons enrollment={this.state.enrollment} setView={this.setView} setLessonId={this.setLessonId} lessons={this.state.lessons} courseId={this.state.course.courseId} userId={this.state.user.userId}/>;
         break;
       case 'myFieldTrips': view =
-       <UserFieldTrips setView={this.setView} getFieldTrips={this.getFieldTrips} setFieldTrip={this.setFieldTrip} fieldTrips={this.state.allFieldTrips} userName={this.state.user.userName} userId={this.state.user.userId}/>;
+       <UserFieldTrips setView={this.setView} setBackPage={this.setBackPage} getFieldTrips={this.getFieldTrips} setFieldTrip={this.setFieldTrip} fieldTrips={this.state.allFieldTrips} userName={this.state.user.userName} userId={this.state.user.userId}/>;
         break;
       case 'planFieldTrip': view =
         <FieldTripForm setView={this.setView} addFieldTrip={this.addFieldTrip} user={this.state.user}/>;
