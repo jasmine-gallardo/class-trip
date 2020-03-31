@@ -78,8 +78,8 @@ app.get('/api/fieldTrips/:fieldTripId', (req, res, next) => {
 });
 
 // GET - Search Field Trips - by Category
-app.get('/api/fieldTrips/category', (req, res, next) => {
-  const categoryName = req.body.categoryName;
+app.get('/api/fieldTrips/:categoryName', (req, res, next) => {
+  const categoryName = req.params.categoryName;
   const sql = `
     select  "field_trips"."fieldTripName",
             "field_trips"."address",
