@@ -83,6 +83,8 @@ app.get('/api/fieldTrips/:categoryName', (req, res, next) => {
   const sql = `
     select  "field_trips"."fieldTripName",
             "field_trips"."address",
+            "field_trips"."city",
+            "field_trips"."fieldTripId",
             "categories"."categoryName"
       from  "field_trips"
       join  "field_trips_categories" using ("fieldTripId")
