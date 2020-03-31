@@ -66,7 +66,7 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  updateFieldTrip(fieldTripId) {
+  updateFieldTrip(updatedFieldTrip, fieldTripId) {
     const newestFTArray = [...this.state.allFieldTrips];
     console.log('all', this.state.allFieldTrips);
     const req = {

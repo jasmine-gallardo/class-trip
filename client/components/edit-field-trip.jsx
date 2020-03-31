@@ -24,7 +24,7 @@ export default class EditFieldTrip extends React.Component {
   }
 
   componentDidMount() {
-    this.getUpdateFieldTrip(1);
+    this.getUpdateFieldTrip(this.props.fieldTripId);
   }
 
   getUpdateFieldTrip(fieldTripId) {
@@ -35,7 +35,7 @@ export default class EditFieldTrip extends React.Component {
           fieldTripName: fieldTrip.fieldTripName,
           address: fieldTrip.address,
           city: fieldTrip.city,
-          category: { categoryName: fieldTrip.categoryName, categoryId: fieldTrip.categoryId },
+          category: { categoryId: fieldTrip.categoryId, categoryName: fieldTrip.categoryName },
           date: fieldTrip.date,
           time: fieldTrip.time,
           description: fieldTrip.description
@@ -57,7 +57,7 @@ export default class EditFieldTrip extends React.Component {
     };
     const userName = this.props.user.userName;
     const userId = this.props.user.userId;
-    this.props.updateFieldTrip(updatedFieldTrip);
+    this.props.updateFieldTrip(updatedFieldTrip, this.props.fieldTripId);
     this.handleReset(event);
     this.props.setView('myFieldTrips', userName, userId);
   }
@@ -68,7 +68,7 @@ export default class EditFieldTrip extends React.Component {
       fieldTripName: '',
       address: '',
       city: '',
-      category: '',
+      category: { categoryId: null, categoryName: '' },
       date: '',
       time: '',
       description: ''
