@@ -35,12 +35,10 @@ export default class App extends React.Component {
     this.setUser = this.setUser.bind(this);
     this.setCourse = this.setCourse.bind(this);
     this.setLessons = this.setLessons.bind(this);
-
     this.setLessonId = this.setLessonId.bind(this);
     this.setFieldTrip = this.setFieldTrip.bind(this);
     this.setBackPage = this.setBackPage.bind(this);
     this.getCourses = this.getCourses.bind(this);
-
     this.setEnrollment = this.setEnrollment.bind(this);
   }
 

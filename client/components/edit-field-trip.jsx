@@ -88,7 +88,7 @@ export default class EditFieldTrip extends React.Component {
   }
 
   handleChangeCategory(event) {
-    this.setState({ category: event.target.value });
+    this.setState({ category: { categoryId: event.target.value } });
   }
 
   handleChangeDate(event) {
