@@ -1,5 +1,5 @@
 import React from 'react';
-import ViewFieldTrip from './view-field-trip';
+// import ViewFieldTrip from './view-field-trip';
 
 export default class SearchFieldTripsCity extends React.Component {
   constructor(props) {
