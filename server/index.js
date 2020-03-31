@@ -78,7 +78,7 @@ app.get('/api/fieldTrips/:fieldTripId', (req, res, next) => {
 });
 
 // GET - Search Field Trips - by Category
-app.get('/api/fieldTrips/:categoryName', (req, res, next) => {
+app.get('/api/fieldTripSearch/:categoryName', (req, res, next) => {
   const categoryName = req.params.categoryName;
   const sql = `
     select  "field_trips"."fieldTripName",
@@ -95,11 +95,15 @@ app.get('/api/fieldTrips/:categoryName', (req, res, next) => {
   db.query(sql, value)
     .then(result => {
       if (!result.rows[0]) {
-        return res.status(404).json({
-          error: 'Field Trips not found'
+        return res.json({
+          error: 'Courses not found',
+          fieldTrips: []
         });
       } else {
-        return res.json(result.rows);
+        return res.json({
+          error: null,
+          fieldTrips: result.rows
+        });
       }
     })
     .catch(err => next(err));

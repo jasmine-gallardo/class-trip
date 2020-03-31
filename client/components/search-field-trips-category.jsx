@@ -1,5 +1,5 @@
 import React from 'react';
-// import CourseSearchResult from './course-search-result';
+import fieldTripSearchResult from './field-trip-search-result';
 
 export default class SearchFieldTrips extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ export default class SearchFieldTrips extends React.Component {
       fieldTrips: []
     };
     this.handleChangeSelection = this.handleChangeSelection.bind(this);
-    // this.handleGetFieldTrips = this.handleGetFieldTrips.bind(this);
+    this.handleGetFieldTrips = this.handleGetFieldTrips.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
 
@@ -32,28 +32,28 @@ export default class SearchFieldTrips extends React.Component {
     this.setState({
       categoryName: event.target.value
     });
-    // if (event.target.value) {
-    //   this.handleGetFieldTrips(event.target.value);
-    // }
+    if (event.target.value) {
+      this.handleGetFieldTrips(event.target.value);
+    }
   }
 
-  // handleGetFieldTrips(categoryName) {
-  //   fetch('/api/courseCategories/' + categoryName)
-  //     .then(res =>
-  //       res.json())
-  //     .then(coursesArray => {
-  //       this.setState({
-  //         courses: coursesArray.courses
-  //       });
-  //     })
-  //     .catch(err => console.error(err));
-  // }
+  handleGetFieldTrips(categoryName) {
+    fetch('/api/fieldTripSearch/' + categoryName)
+      .then(res =>
+        res.json())
+      .then(fieldTripArray => {
+        this.setState({
+          fieldTrips: fieldTripArray.fieldTrips
+        });
+      })
+      .catch(err => console.error(err));
+  }
 
   handleReset() {
     this.setState({
       categories: [],
       categoryName: '',
-      courses: []
+      fieldTrips: []
     });
     this.getCategories();
   }
