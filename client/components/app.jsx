@@ -21,6 +21,7 @@ export default class App extends React.Component {
       fieldTrip: { fieldTripId: null },
       allFieldTrips: [],
       allCourses: [],
+      enrollment: null,
       lessons: [],
       lessonId: null,
       backPage: null
@@ -37,6 +38,8 @@ export default class App extends React.Component {
     this.setFieldTrip = this.setFieldTrip.bind(this);
     this.setBackPage = this.setBackPage.bind(this);
     this.getCourses = this.getCourses.bind(this);
+
+    this.setEnrollment = this.setEnrollment.bind(this);
   }
 
   getLessons(courseId) {
@@ -112,6 +115,10 @@ export default class App extends React.Component {
     this.setState({ backPage });
   }
 
+  setEnrollment(enrollment) {
+    this.setState({ enrollment });
+  }
+
   render() {
     let view;
     switch (this.state.view.name) {
@@ -122,13 +129,13 @@ export default class App extends React.Component {
         <Home setView={this.setView} getCourses={this.getCourses} getFieldTrips={this.getFieldTrips} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'searchCourses': view =
-        <SearchCourses setLessons={this.setLessons} setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
+        <SearchCourses setEnrollment={this.setEnrollment} setLessons={this.setLessons} setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'myCourses': view =
-        <UserCourses setLessons={this.setLessons} getLessons={this.getLessons} allCourses={this.state.allCourses} setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
+        <UserCourses setEnrollment={this.setEnrollment} setLessons={this.setLessons} getLessons={this.getLessons} allCourses={this.state.allCourses} setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'myLessons': view =
-        <UserLessons setView={this.setView} setLessonId={this.setLessonId} lessons={this.state.lessons} courseId={this.state.course.courseId} userId={this.state.user.userId}/>;
+        <UserLessons enrollment={this.state.enrollment} setView={this.setView} setLessonId={this.setLessonId} lessons={this.state.lessons} courseId={this.state.course.courseId} userId={this.state.user.userId}/>;
         break;
       case 'myFieldTrips': view =
        <UserFieldTrips setView={this.setView} getFieldTrips={this.getFieldTrips} fieldTrips={this.state.allFieldTrips} userName={this.state.user.userName} userId={this.state.user.userId}/>;
