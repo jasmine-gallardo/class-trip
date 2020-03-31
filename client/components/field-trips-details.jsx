@@ -22,22 +22,23 @@ export default class FieldTripsDetails extends React.Component {
     const fieldTrip = this.state.fieldTripDetails;
     return (
       <div>
-        <div className='row p-3'>
-          <h3>{fieldTrip.date}</h3>
-          <h4>{fieldTrip.time}</h4>
-        </div>
-        <div className='row p-3 h4 mx-auto'>
-          <i className="fa fa-map-marker"></i>
+        <div className="open-sans h2 text-info text-center">{fieldTrip.fieldTripName}</div>
+        <div className='row'>
+          <h4 className="text-secondary open-sans m-auto text-center">{fieldTrip.date}</h4>
         </div>
         <div>
-          <p>{fieldTrip.address}</p>
-          <p>{fieldTrip.city}</p>
+          <p className="lead mt-1 mb-4 text-center">{fieldTrip.time}</p>
+        </div>
+        <div className='row p-3 h4 my-3'>
+          <i className="fa fa-map-marker mr-3"></i>
+          <div>
+            <p className="lead m-0">{fieldTrip.address}</p>
+            <p className="lead m-0">{fieldTrip.city}</p>
+          </div>
         </div>
         <div className='row p-3'>
           <div className='col-md-6 text-center'>
-            <div id="map-container-google-1" className="z-depth-1-half map-container">
-              {/* <iframe src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed" frameBorder="0"
-                style="border:0" allowFullScreen></iframe> */}
+            <div id="map-container-google-1" className="z-depth-1-half map-container bg-light">
             </div>
           </div>
         </div>
@@ -46,7 +47,7 @@ export default class FieldTripsDetails extends React.Component {
             <h4>Details:</h4>
           </div>
         </div>
-        <div className='col-md-8'>
+        <div className='col-md-8 lead'>
           <p>{fieldTrip.description}</p>
         </div>
       </div>
