@@ -48,13 +48,17 @@ app.get('/api/fieldTrips/:fieldTripId', (req, res, next) => {
   }
 
   const sql = `
-    select "fieldTripName",
-           "date",
-           "description",
-           "address",
-           "city",
-           "time"
+    select "field_trips"."fieldTripName",
+           "field_trips"."date",
+           "field_trips"."description",
+           "field_trips"."address",
+           "field_trips"."city",
+           "field_trips"."time",
+           "field_trips_categories"."categoryId",
+           "categories"."categoryName"
     from "field_trips"
+    join "field_trips_categories" using ("fieldTripId")
+    join "categories" using ("categoryId")
     where "fieldTripId" = $1
   `;
 
@@ -148,7 +152,7 @@ app.delete('/api/fieldTrips/:fieldTripId', (req, res, next) => {
 });
 
 // PUT - Edit Field Trip
-app.put('/api/fieldTrips/:fieldTripId', (req, res, next) => {
+app.put('/api/editFieldTrips/:fieldTripId', (req, res, next) => {
   const fT = req.body;
   const fTId = req.params.fieldTripId;
   if (!parseInt(fTId, 10) || !fT.fieldTripName || !fT.address || !fT.city || !fT.date || !fT.time || !fT.description) {
