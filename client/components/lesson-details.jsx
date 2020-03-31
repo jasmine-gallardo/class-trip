@@ -20,6 +20,22 @@ export default class LessonDetails extends React.Component {
   }
 
   render() {
+    if (!this.props.enrollment) {
+      return (
+        <div className="h-75 p-2 row align-items-center">
+          <div>
+            <p className="open-sans h2 mb-5 text-info text-center">Oops, you&apos;re not in this class!</p>
+            <p className="mb-5 lead text-secondary text-center ">You must be enrolled in the course to view this lesson.</p>
+            <div className="text-center">
+              <button
+                className="btn btn-lg text-light btn-warning">Add Course
+              </button>
+            </div>
+
+          </div>
+        </div>
+      );
+    }
     return (
       <div className="h-100 p-2">
         <p className="open-sans h2 mb-5 text-info text-center">{this.state.lesson.heading}</p>
