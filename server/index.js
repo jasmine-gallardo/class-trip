@@ -48,13 +48,15 @@ app.get('/api/fieldTrips/:fieldTripId', (req, res, next) => {
   }
 
   const sql = `
-    select "fieldTripName",
-           "date",
-           "description",
-           "address",
-           "city",
-           "time"
+    select "field_trips"."fieldTripName",
+           "field_trips"."date",
+           "field_trips"."description",
+           "field_trips"."address",
+           "field_trips"."city",
+           "field_trips"."time",
+           "field_trips_categories"."categoryId"
     from "field_trips"
+    join "field_trips_categories" using ("fieldTripId")
     where "fieldTripId" = $1
   `;
 
