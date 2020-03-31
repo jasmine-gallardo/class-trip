@@ -17,7 +17,6 @@ export default class Header extends React.Component {
                 className="fas fa-angle-left fa-3x m-auto pl-3 col-2"></i>
             </div>
             <p className="h4 work-sans m-auto col-10"> Search for Courses</p>
-
           </div>
         );
       case 'myCourses':
@@ -66,6 +65,16 @@ export default class Header extends React.Component {
                 className="fas fa-angle-left fa-3x m-auto pl-3 col-2"></i>
             </div>
             <p className="h4 work-sans m-auto col-6"> Details</p>
+          </div>
+        );
+      case 'fieldTripDetails':
+        return (
+          <div className="w-100 row m-auto p-2 d-flex justify-content-center justify-content-between">
+            <div onClick={() => this.props.setView(this.props.backPage)}>
+              <i
+                className="fas fa-angle-left fa-3x m-auto pl-3 col-2"></i>
+            </div>
+            <p className="h4 work-sans m-auto col-6">Details</p>
           </div>
         );
     }
