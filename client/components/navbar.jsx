@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default class Navbar extends React.Component {
+
   getHomeClass() {
     if (this.props.view !== 'loggedIn') {
       return 'text-dark';
@@ -25,9 +26,15 @@ export default class Navbar extends React.Component {
     }
   }
 
+  getClickHandler() {
+    if (this.props.view === 'users') {
+      return () => this.props.setView('users');
+    }
+  }
+
   render() {
     return (
-      <footer className="bg-secondary d-flex align-items-center justify-content-between p-3 text-light">
+      <footer onClick={this.getClickHandler()} className="bg-secondary d-flex align-items-center justify-content-between p-3 text-light">
         <div className={this.getHomeClass()} onClick={() => this.props.setView('loggedIn')}>
           <i
             className="fas fa-home fa-3x"></i>

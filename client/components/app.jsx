@@ -6,11 +6,14 @@ import SearchCourses from './search-courses';
 import UserLessons from './user-lessons';
 import UserFieldTrips from './user-field-trips';
 import FieldTripForm from './field-trip-form';
+import EditFieldTrip from './edit-field-trip';
 import LessonDetails from './lesson-details';
 import Header from './header';
 import Navbar from './navbar';
 import GeneralSearch from './general-search';
 import FieldTripDetails from './field-trips-details';
+import SearchFieldTrips from './search-field-trips-category';
+// import SearchFieldTripsCity from './search-field-trips-city'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -30,16 +33,15 @@ export default class App extends React.Component {
     this.getLessons = this.getLessons.bind(this);
     this.getFieldTrips = this.getFieldTrips.bind(this);
     this.addFieldTrip = this.addFieldTrip.bind(this);
+    this.updateFieldTrip = this.updateFieldTrip.bind(this);
     this.setView = this.setView.bind(this);
     this.setUser = this.setUser.bind(this);
     this.setCourse = this.setCourse.bind(this);
     this.setLessons = this.setLessons.bind(this);
-
     this.setLessonId = this.setLessonId.bind(this);
     this.setFieldTrip = this.setFieldTrip.bind(this);
     this.setBackPage = this.setBackPage.bind(this);
     this.getCourses = this.getCourses.bind(this);
-
     this.setEnrollment = this.setEnrollment.bind(this);
   }
 
@@ -75,6 +77,23 @@ export default class App extends React.Component {
       .then(newFieldTrip => {
         const updatedFieldTripsArray = this.state.allFieldTrips.concat(newFieldTrip);
         this.setState({ allFieldTrips: updatedFieldTripsArray });
+      })
+      .catch(err => console.error(err));
+  }
+
+  updateFieldTrip(updatedFieldTrip, fieldTripId) {
+    const newestFTArray = [...this.state.allFieldTrips];
+    const req = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedFieldTrip)
+    };
+    fetch(`/api/editFieldTrips/${fieldTripId}`, req)
+      .then(res => res.json())
+      .then(updatedFieldTrip => {
+        const ftIndex = newestFTArray.findIndex(element => element.id === fieldTripId);
+        newestFTArray.splice(ftIndex, 1, updatedFieldTrip);
+        this.setState({ allFieldTrips: newestFTArray });
       })
       .catch(err => console.error(err));
   }
@@ -132,6 +151,9 @@ export default class App extends React.Component {
       case 'searchCourses': view =
         <SearchCourses setEnrollment={this.setEnrollment} setLessons={this.setLessons} setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
+      case 'fieldTrips': view =
+        <SearchFieldTrips setView={this.setView} setFieldTrip={this.setFieldTrip} userName={this.state.user.userName} userId={this.state.user.userId} />;
+        break;
       case 'myCourses': view =
         <UserCourses setEnrollment={this.setEnrollment} setLessons={this.setLessons} getLessons={this.getLessons} allCourses={this.state.allCourses} setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
@@ -143,6 +165,9 @@ export default class App extends React.Component {
         break;
       case 'planFieldTrip': view =
         <FieldTripForm setView={this.setView} addFieldTrip={this.addFieldTrip} user={this.state.user}/>;
+        break;
+      case 'editFieldTrip': view =
+        <EditFieldTrip setView={this.setView} user={this.state.user} updateFieldTrip={this.updateFieldTrip} fieldTripId={this.state.fieldTrip.fieldTripId} />;
         break;
       case 'lessonDetails': view =
         <LessonDetails setView={this.setView} lessonId={this.state.lessonId}/>;
