@@ -29,6 +29,7 @@ export default class UserCourses extends React.Component {
                 currentPage='myCourses'
                 getLessons={this.props.getLessons}
                 setLessons={this.props.setLessons}
+                setEnrollment={this.props.setEnrollment}
               />
             );
           })
