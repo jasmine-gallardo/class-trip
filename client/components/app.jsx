@@ -15,10 +15,10 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: { name: 'editFieldTrip' },
-      user: { userName: 'Melissa', userId: 1 },
+      view: { name: 'users' },
+      user: { userName: '', userId: null },
       course: { courseId: null },
-      fieldTrip: { fieldTripId: 1 },
+      fieldTrip: { fieldTripId: null },
       allFieldTrips: [],
       lessons: [],
       lessonId: null,
