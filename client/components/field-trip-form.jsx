@@ -124,7 +124,7 @@ export default class FieldTripForm extends React.Component {
         </div>
         <div className="d-flex input-group-lg mb-4">
           <label htmlFor="date"></label>
-          <input required onChange={this.handleChangeDate} className="form-control w-50 ml-2 mr-2" type="text" name="date" id="date" placeholder="mm/dd/yy"/>
+          <input required onChange={this.handleChangeDate} className="form-control w-50 ml-2 mr-2" type="text" name="date" id="date" placeholder="dd/mm/yy"/>
           <label htmlFor="time"></label>
           <select required onChange={this.handleChangeTime} className="form-control w-50" name="time" id="time">
             <option value="">Time &#9660;</option>
