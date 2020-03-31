@@ -7,18 +7,6 @@ export default class UserCourses extends React.Component {
     this.state = {
       courses: []
     };
-    this.getCourses = this.getCourses.bind(this);
-  }
-
-  componentDidMount() {
-    this.getCourses(this.props.userId);
-  }
-
-  getCourses(userId) {
-    fetch(`/api/users_courses/${userId}`)
-      .then(res => res.json())
-      .then(coursesArray => this.setState({ courses: coursesArray }))
-      .catch(err => console.error(err));
   }
 
   render() {
@@ -27,7 +15,7 @@ export default class UserCourses extends React.Component {
         <div className="w-50 m-auto p-2 d-flex justify-content-center justify-content-between">
         </div>
         {
-          this.state.courses.map(course => {
+          this.props.allCourses.map(course => {
             return (
               <Course
                 key={course.courseId}
@@ -39,6 +27,9 @@ export default class UserCourses extends React.Component {
                 setCourse={this.props.setCourse}
                 setBackPage={this.props.setBackPage}
                 currentPage='myCourses'
+                getLessons={this.props.getLessons}
+                setLessons={this.props.setLessons}
+                setEnrollment={this.props.setEnrollment}
               />
             );
           })

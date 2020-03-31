@@ -50,3 +50,7 @@ header {
 .user-login {
   font-size: 2rem;
 }
+
+.hidden {
+  visibility: hidden;
+}

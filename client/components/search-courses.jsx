@@ -93,6 +93,8 @@ export default class SearchCourses extends React.Component {
               setCourse={this.props.setCourse}
               setBackPage={this.props.setBackPage}
               currentPage={'searchCourses'}
+              setLessons={this.props.setLessons}
+              setEnrollment={this.props.setEnrollment}
             />
           );
         })}

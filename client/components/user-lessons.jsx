@@ -2,29 +2,6 @@ import React from 'react';
 import LessonButton from './lesson-button';
 
 export default class UserLessons extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      enrollment: null
-    };
-  }
-
-  componentDidMount() {
-    this.getEnrollment(this.props.userId, this.props.courseId);
-  }
-
-  getEnrollment(user, course) {
-    fetch(`/api/users_courses/${user}/${course}`)
-      .then(res => res.json())
-      .then(enrollmentArray => {
-        if (!enrollmentArray[0]) {
-          this.setState({ enrollment: false }, this.props.getLessons(this.props.courseId));
-        } else {
-          this.setState({ enrollment: true }, this.props.getLessons(this.props.courseId));
-        }
-      }
-      );
-  }
 
   addCourse(user, course) {
     const req = {
@@ -44,7 +21,7 @@ export default class UserLessons extends React.Component {
     if (!this.props.lessons[0]) {
       return <p>No lessons found for this course</p>;
     }
-    if (!this.state.enrollment) {
+    if (!this.props.enrollment) {
       return (
         <div className="d-flex flex-column justify-content-center">
           <button
