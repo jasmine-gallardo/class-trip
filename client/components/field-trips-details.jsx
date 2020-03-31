@@ -4,14 +4,14 @@ export default class FieldTripsDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = { fieldTripDetails: {} };
-    this.getFieldTripDetials = this.getFieldTripDetials.bind(this);
+    this.getFieldTripDetails = this.getFieldTripDetails.bind(this);
   }
 
   componentDidMount() {
-    this.getFieldTripDetials(this.props.fieldTripId);
+    this.getFieldTripDetails(this.props.fieldTripId);
   }
 
-  getFieldTripDetials(fieldTripId) {
+  getFieldTripDetails(fieldTripId) {
     fetch(`/api/fieldTrips/${fieldTripId}`)
       .then(res => res.json())
       .then(fieldTripObject => this.setState({ fieldTripDetails: fieldTripObject }))
