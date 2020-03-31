@@ -336,10 +336,14 @@ where   "categoryName" = $1
     .then(result => {
       if (!result.rows[0]) {
         return res.json({
-          error: 'Courses not found'
+          error: 'Courses not found',
+          courses: []
         });
       } else {
-        return res.json(result.rows);
+        return res.json({
+          error: null,
+          courses: result.rows
+        });
       }
     })
     .catch(err => next(err));

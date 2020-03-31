@@ -43,7 +43,7 @@ export default class SearchCourses extends React.Component {
         res.json())
       .then(coursesArray => {
         this.setState({
-          courses: coursesArray
+          courses: coursesArray.courses
         });
       })
       .catch(err => console.error(err));
@@ -60,27 +60,25 @@ export default class SearchCourses extends React.Component {
 
   render() {
     return (
-      <div className=" d-flex flex-column">
+      <div className="d-flex flex-column">
         <form onReset={this.handleReset} autoComplete="off">
-          <div className="mb-3" id="for-cat-search" >
-            <label htmlFor="search-cat">Search by Category:</label>
+          <div className="mb-4 text-center" id="for-cat-search" >
+            <label htmlFor="search-cat"></label>
             <input onChange={this.handleChangeSelection} className="search-box mr-3"
-              list="categories" id="cat-search" name="category-search" />
+              list="categories" id="cat-search" name="category-search" placeholder="Search by Category"/>
             <button
-              className="p-1"
-              type="reset"
-              id="clear-select">
-              Reset</button>
+              className="p-2 btn btn-info" type="reset" id="clear-select"> Reset</button>
             <datalist id="categories" >
               {this.state.categories.map((cat, key) => {
                 return (
                   <option key={cat.categoryId} value={cat.categoryName} >
-                    {cat.categoryName} </option>);
+                    {cat.categoryName}
+                  </option>);
               })}
             </datalist>
           </div>
         </form>
-        <div className="mb-1">Category: {this.state.categoryName}</div>
+        <div className="ml-4 mb-2 h2 open-sans text-info">{this.state.categoryName}</div>
         {this.state.courses.map((course, key) => {
           return (
             <CourseSearchResult
@@ -95,6 +93,8 @@ export default class SearchCourses extends React.Component {
               setCourse={this.props.setCourse}
               setBackPage={this.props.setBackPage}
               currentPage={'searchCourses'}
+              setLessons={this.props.setLessons}
+              setEnrollment={this.props.setEnrollment}
             />
           );
         })}

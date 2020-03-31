@@ -7,7 +7,7 @@ export default class UserFieldTrips extends React.Component {
       return <p>Looks like you need more field trips!</p>;
     }
     return (
-      <div className="h-75 d-flex flex-column">
+      <div className="d-flex flex-column">
         <div className="p-2 mb-3 d-flex align-items-start justify-content-center">
           <div className="d-flex justify-content-center">
           </div>
@@ -37,19 +37,25 @@ export default class UserFieldTrips extends React.Component {
 
 function FieldTrip(props) {
   return (
-    <div className="w-100 d-flex justify-content-center">
-      <button
-        onClick={() => props.setView('fieldTripDetails')}
-        className="d-flex align-items-center w-100 btn-block btn-info btn-outline-secondary text-dark h4 mb-3 rounded">
-        <div className="w-75">
-          <h3 className="text-light">{props.name} </h3>
-          <h6> Location: {props.address} </h6>
-          <h5> {props.city} </h5>
+    <div className="col-12 card p-3 mb-1 bg-light mb-2 open-sans">
+      <div className="row">
+        <div className="col-9">
+          <div className="h4 text-info">
+            {props.name}
+          </div>
+          <div className="desc">
+            {props.address}
+          </div>
+          <div className="desc">
+            {props.city}
+          </div>
         </div>
-        <div>
-          <div className="btn-lg bg-secondary text-light"> INFO </div>
+        <div className="d-flex flex-wrap align-items-center">
+          <button
+            onClick={() => props.setView('fieldTripDetails')}
+            type="button" className="btn btn-dark my-1 "> INFO </button>
         </div>
-      </button>
+      </div>
     </div>
   );
 }

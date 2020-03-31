@@ -23,24 +23,25 @@ export default class UserList extends React.Component {
 
   render() {
     return (
-      <div className="h-75 d-flex flex-wrap justify-content-center">
-        <div className="w-50 m-auto p-2 d-flex justify-content-center justify-content-between">
-          <i className="fas fa-user fa-3x"></i>
-          <p className="h2">Log In</p>
+      <div className="h-100 m-auto justify-content-center">
+        <div className="p-5 w-100 h-25 m-0 p-2 d-flex justify-content-center justify-content-between align-items-center">
+          <p className="text-center h1 open-sans m-auto text-info pr-4">Log In</p>
         </div>
-        {
-          this.state.users.map(user => {
-            return (
-              <User
-                key={user.userId}
-                userId={user.userId}
-                name={user.name}
-                setView={this.props.setView}
-                setUser={this.props.setUser}
-              />
-            );
-          })
-        }
+        <div className="h-50 d-flex flex-wrap justify-content-center">
+          {
+            this.state.users.map(user => {
+              return (
+                <User
+                  key={user.userId}
+                  userId={user.userId}
+                  name={user.name}
+                  setView={this.props.setView}
+                  setUser={this.props.setUser}
+                />
+              );
+            })
+          }
+        </div>
       </div>
     );
   }

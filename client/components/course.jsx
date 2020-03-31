@@ -3,13 +3,44 @@ import React from 'react';
 export default class Course extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      enrollment: null,
+      lessons: []
+    };
     this.setNextPage = this.setNextPage.bind(this);
   }
 
+  componentDidMount() {
+    this.getLessons(this.props.courseId);
+    this.getEnrollment(this.props.userId, this.props.courseId);
+  }
+
+  getEnrollment(user, course) {
+    fetch(`/api/users_courses/${user}/${course}`)
+      .then(res => res.json())
+      .then(enrollmentArray => {
+        if (!enrollmentArray[0]) {
+          this.setState({ enrollment: false });
+        } else {
+          this.setState({ enrollment: true });
+        }
+      }
+      );
+  }
+
   setNextPage(viewName, courseId, backPage) {
-    this.props.setView(viewName);
+    this.props.setEnrollment(this.state.enrollment);
+    this.props.setLessons(this.state.lessons);
     this.props.setCourse(courseId);
     this.props.setBackPage(backPage);
+    this.props.setView(viewName);
+  }
+
+  getLessons(courseId) {
+    fetch(`/api/courses/${courseId}`)
+      .then(res => res.json())
+      .then(lessonsArray => this.setState({ lessons: lessonsArray }))
+      .catch(err => console.error(err));
   }
 
   render() {
@@ -17,12 +48,19 @@ export default class Course extends React.Component {
     const courseId = this.props.courseId;
     const backPage = this.props.currentPage;
     return (
-      <div className="w-100 d-flex justify-content-center">
-        <button
-          onClick={() => { this.setNextPage('myLessons', courseId, backPage); }}
-          className="w-100 btn-block btn-warning text-light h4 mb-3 rounded">
-          {courseName}
-        </button>
+      <div className="col-12 card p-3 mb-2 bg-light shadow-sm">
+        <div className="row my-auto">
+          <div className="col-9 py-3 pl-4">
+            <div className="h4 open-sans mb-0 text-secondary">
+              {courseName}
+            </div>
+          </div>
+          <div className="d-flex flex-wrap align-items-center col-3">
+            <button
+              onClick={() => this.setNextPage('myLessons', courseId, backPage)}
+              type="button" className="btn btn-info my-1 ">&gt;</button>
+          </div>
+        </div>
       </div>
     );
   }
