@@ -18,9 +18,9 @@ export default class UserLessons extends React.Component {
       .then(res => res.json())
       .then(enrollmentArray => {
         if (!enrollmentArray[0]) {
-          this.setState({ enrollment: false }, this.props.getLessons(this.props.courseId));
+          this.setState({ enrollment: false });
         } else {
-          this.setState({ enrollment: true }, this.props.getLessons(this.props.courseId));
+          this.setState({ enrollment: true });
         }
       }
       );
