@@ -7,7 +7,7 @@ export default class EditFieldTrip extends React.Component {
       fieldTripName: '',
       address: '',
       city: '',
-      category: '',
+      category: { categoryId: null, categoryName: '' },
       date: '',
       time: '',
       description: ''
@@ -35,7 +35,7 @@ export default class EditFieldTrip extends React.Component {
           fieldTripName: fieldTrip.fieldTripName,
           address: fieldTrip.address,
           city: fieldTrip.city,
-          category: '',
+          category: { categoryName: fieldTrip.categoryName, categoryId: fieldTrip.categoryId },
           date: fieldTrip.date,
           time: fieldTrip.time,
           description: fieldTrip.description
@@ -49,10 +49,9 @@ export default class EditFieldTrip extends React.Component {
       name: this.state.fieldTripName,
       address: this.state.address,
       city: this.state.city,
-      categoryId: this.state.category,
+      categoryId: this.state.category.categoryId,
       date: this.state.date,
       time: this.state.time,
-
       description: this.state.description,
       userId: this.props.user.userId
     };
@@ -140,7 +139,7 @@ export default class EditFieldTrip extends React.Component {
         <div className="input-group-lg mb-4">
           <label className="d-block" htmlFor="category">Category</label>
           <select required onChange={this.handleChangeCategory} className="form-control" name="category" id="category">
-            <option value="">Please choose an option &#9660;</option>
+            <option value={this.state.category.categoryId}>{this.state.category.categoryName} &#9660;</option>
             <option value="1">Film</option>
             <option value="2">Art</option>
             <option value="3">Wellness</option>

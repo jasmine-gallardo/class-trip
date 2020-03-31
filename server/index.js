@@ -54,9 +54,11 @@ app.get('/api/fieldTrips/:fieldTripId', (req, res, next) => {
            "field_trips"."address",
            "field_trips"."city",
            "field_trips"."time",
-           "field_trips_categories"."categoryId"
+           "field_trips_categories"."categoryId",
+           "categories"."categoryName"
     from "field_trips"
     join "field_trips_categories" using ("fieldTripId")
+    join "categories" using ("categoryId")
     where "fieldTripId" = $1
   `;
 
