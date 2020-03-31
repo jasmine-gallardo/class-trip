@@ -9,9 +9,24 @@ export default class CourseSearchResult extends React.Component {
 
   componentDidMount() {
     this.getLessons(this.props.courseId);
+    this.getEnrollment(this.props.userId, this.props.courseId);
+  }
+
+  getEnrollment(user, course) {
+    fetch(`/api/users_courses/${user}/${course}`)
+      .then(res => res.json())
+      .then(enrollmentArray => {
+        if (!enrollmentArray[0]) {
+          this.setState({ enrollment: false });
+        } else {
+          this.setState({ enrollment: true });
+        }
+      }
+      );
   }
 
   setNextPage(viewName, courseId, backPage) {
+    this.props.setEnrollment(this.state.enrollment);
     this.props.setLessons(this.state.lessons);
     this.props.setCourse(courseId);
     this.props.setBackPage(backPage);

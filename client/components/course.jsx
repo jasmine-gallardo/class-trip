@@ -3,15 +3,33 @@ import React from 'react';
 export default class Course extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { lessons: [] };
+    this.state = {
+      enrollment: null,
+      lessons: []
+    };
     this.setNextPage = this.setNextPage.bind(this);
   }
 
   componentDidMount() {
     this.getLessons(this.props.courseId);
+    this.getEnrollment(this.props.userId, this.props.courseId);
+  }
+
+  getEnrollment(user, course) {
+    fetch(`/api/users_courses/${user}/${course}`)
+      .then(res => res.json())
+      .then(enrollmentArray => {
+        if (!enrollmentArray[0]) {
+          this.setState({ enrollment: false });
+        } else {
+          this.setState({ enrollment: true });
+        }
+      }
+      );
   }
 
   setNextPage(viewName, courseId, backPage) {
+    this.props.setEnrollment(this.state.enrollment);
     this.props.setLessons(this.state.lessons);
     this.props.setCourse(courseId);
     this.props.setBackPage(backPage);
