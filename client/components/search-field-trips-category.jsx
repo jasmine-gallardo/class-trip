@@ -1,90 +1,100 @@
 import React from 'react';
+import FieldTripSearchResult from './field-trip-search-result';
 
 export default class SearchFieldTrips extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      categories: [],
       categoryName: '',
-      fieldTripsCategories: []
+      fieldTrips: []
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.getFieldTripsCategory = this.getFieldTripsCategory.bind(this);
+    this.handleChangeSelection = this.handleChangeSelection.bind(this);
+    this.handleGetFieldTrips = this.handleGetFieldTrips.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
 
-  handleChange(event) {
+  componentDidMount() {
+    this.getCategories();
+  }
+
+  getCategories() {
+    fetch('/api/categories')
+      .then(res => res.json())
+      .then(categoriesArray =>
+        this.setState({
+          categories: categoriesArray
+        }))
+      .catch(err => console.error(err));
+  }
+
+  handleChangeSelection(event) {
     this.setState({
       categoryName: event.target.value
     });
+    if (event.target.value) {
+      this.handleGetFieldTrips(event.target.value);
+    }
   }
 
-  getFieldTripsCategory(categoryName) {
-    fetch('/api/fieldTripsCategory/' + categoryName)
+  handleGetFieldTrips(categoryName) {
+    fetch('/api/fieldTripSearch/' + categoryName)
       .then(res =>
         res.json())
-      .then(data => {
-        this.setState({ fieldTripsCategories: data });
+      .then(fieldTripArray => {
+        this.setState({
+          fieldTrips: fieldTripArray.fieldTrips
+        });
       })
       .catch(err => console.error(err));
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    if (event.target) {
-      this.getFieldTripsCategory(this.state.categoryName);
-    }
-  }
-
   handleReset() {
     this.setState({
+      categories: [],
       categoryName: '',
-      fieldTripsCategories: []
+      fieldTrips: []
     });
+    this.getCategories();
   }
 
   render() {
     return (
-
-      <div className="row d-flex flex-column">
-        <div className="mb-3">
-          <form className="form-inline" onSubmit={this.handleSubmit} onReset={this.handleReset}>
-            <label>
-              Search by Category:
-              <input
-                type="search"
-                onChange={this.handleChange}
-                value={this.state.categoryName}
-                className="form-control mr-sm-2"
-                placeholder="Category"
-                name="category-search" />
-            </label>
-            <input
-              className="p-1"
-              type="submit"
-              value="Submit" />
-
+      <div className="d-flex flex-column">
+        <form onReset={this.handleReset} autoComplete="off">
+          <div className="mb-4 text-center" id="for-cat-search" >
+            <label htmlFor="search-cat"></label>
+            <input onChange={this.handleChangeSelection} className="search-box mr-3"
+              list="categories" id="cat-search" name="category-search" placeholder="Search by Category" />
             <button
-              className="p-1"
-              id="clear-select"
-              onClick={this.handleReset}
-              type="button">
-              Reset</button>
-          </form>
-        </div>
-        <div className="mb-1">Category: {this.state.categoryName}</div>
-        {this.state.fieldTripsCategories.map((fieldTrip, key) => {
+              className="p-2 btn btn-info" type="reset" id="clear-select"> Reset</button>
+            <datalist id="categories" >
+              {this.state.categories.map((cat, key) => {
+                return (
+                  <option key={cat.categoryId} value={cat.categoryName} >
+                    {cat.categoryName}
+                  </option>);
+              })}
+            </datalist>
+          </div>
+        </form>
+        <div className="ml-4 mb-2 h2 open-sans text-info">{this.state.categoryName}</div>
+        {this.state.fieldTrips.map((fieldTrip, key) => {
           return (
-            <ViewFieldTrip
+            <FieldTripSearchResult
               key={fieldTrip.fieldTripId}
-              fieldTripsCategories={this.state.fieldTripsCategories}
-              fieldTripName={fieldTrip.fieldTripName}
-              fieldTripAddress={fieldTrip.address}
+              fieldTrips={this.state.fieldTrips}
+              name={fieldTrip.fieldTripName}
+              date={fieldTrip.date}
+              time={fieldTrip.time}
+              address={fieldTrip.address}
+              city={fieldTrip.city}
+              fieldTripDesc={fieldTrip.description}
               fieldTripId={fieldTrip.fieldTripId}
               userName={this.props.userName}
               userId={this.props.userId}
               setView={this.props.setView}
-              setFieldTrip={this.props.setFieldTrip}
+              setCourse={this.props.setCourse}
             />
           );
         })}
