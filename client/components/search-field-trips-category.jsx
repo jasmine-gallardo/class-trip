@@ -1,5 +1,5 @@
 import React from 'react';
-import fieldTripSearchResult from './field-trip-search-result';
+import FieldTripSearchResult from './field-trip-search-result';
 
 export default class SearchFieldTrips extends React.Component {
   constructor(props) {
@@ -78,7 +78,26 @@ export default class SearchFieldTrips extends React.Component {
             </datalist>
           </div>
         </form>
-        {/* <div className="ml-4 mb-2 h2 open-sans text-info">{this.state.categoryName}</div> */}
+        <div className="ml-4 mb-2 h2 open-sans text-info">{this.state.categoryName}</div>
+        {this.state.fieldTrips.map((fieldTrip, key) => {
+          return (
+            <FieldTripSearchResult
+              key={fieldTrip.fieldTripId}
+              fieldTrips={this.state.fieldTrips}
+              name={fieldTrip.fieldTripName}
+              date={fieldTrip.date}
+              time={fieldTrip.time}
+              address={fieldTrip.address}
+              city={fieldTrip.city}
+              fieldTripDesc={fieldTrip.description}
+              fieldTripId={fieldTrip.fieldTripId}
+              userName={this.props.userName}
+              userId={this.props.userId}
+              setView={this.props.setView}
+              setCourse={this.props.setCourse}
+            />
+          );
+        })}
       </div >
     );
   }

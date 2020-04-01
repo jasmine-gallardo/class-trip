@@ -329,9 +329,9 @@ COPY public.courses ("courseId", name, "categoryId", description) FROM stdin;
 --
 
 COPY public.field_trips ("fieldTripId", "fieldTripName", description, address, city, date, "time") FROM stdin;
-1	Trivia Night / Study Group	Let's study for the Film 101 exam with a trivia night! Test your knowledge. Take lots of notes. And haaaave fun!	2930 Bristol St b102	Costa Mesa	04-04-2020	7:00pm
-18	Wine + Painting	Paint w/ Wine!	123 Main St.	Irvine	04-04-2020	8:00pm
-2	Rooftop Film Festival	Enjoy a 12-hour festival of our favorite Sci-Fi films. BYOB and BYOC - Bring your own chair!	305 E 4th St #100	Santa Ana	06-21-2020	11:00am
+2	Rooftop Film Festival	Enjoy a 12-hour festival of our favorite Sci-Fi films. BYOB and BYOC - Bring your own chair!	305 E 4th St #100	Santa Ana	06/21/20	11:00am
+18	Wine + Painting	Paint w/ Wine!	123 Main St.	Irvine	04/04/20	8:00pm
+1	Trivia Night / Study Group	Let's study for the Film 101 exam with a trivia night! Test your knowledge. Take lots of notes. And haaaave fun!	2930 Bristol St b102	Costa Mesa	04/04/20	7:00pm
 \.
 
 

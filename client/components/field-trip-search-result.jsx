@@ -2,20 +2,26 @@ import React from 'react';
 
 export default class FieldTripSearchResult extends React.Component {
   render() {
-    // const courseId = this.props.courseId;
-    // const courseName = this.props.name;
-    // const courseDesc = this.props.courseDesc;
-    // const backPage = this.props.currentPage;
+    const fieldTripId = this.props.fieldTripId;
+    const fieldTripName = this.props.name;
+    const fieldTripDate = this.props.date;
+    const fieldTripAddress = this.props.address;
+    const fieldTripCity = this.props.city;
+    const fieldTripDesc = this.props.fieldTripDesc;
     return (
       <div className="col-12 card p-3 bg-light mb-2">
         <div className="row">
           <div className="col-9">
             <div className="h4 text-info">
-              {/* {courseName} */}
+              {fieldTripName}
             </div>
+            <strong> {fieldTripDate} </strong>
             <div className="desc text-secondary">
-              {/* {courseDesc} */}
+              {fieldTripDesc}
             </div>
+            <small>
+              {fieldTripAddress} {fieldTripCity}
+            </small>
           </div>
           <div className="d-flex flex-wrap align-items-center">
             <button

@@ -12,7 +12,8 @@ export default class Header extends React.Component {
       case 'generalSearch':
         return (
           <div className="w-70 m-auto p-2 d-flex justify-content-center justify-content-between">
-            <p className="h4 work-sans mb-0"> Search</p>
+            <i className="fas fa-search fa-2x mr-3"></i>
+            <p className="h3 work-sans mb-0"> Search</p>
           </div>
         );
       case 'searchCourses':

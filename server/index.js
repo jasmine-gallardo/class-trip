@@ -84,7 +84,10 @@ app.get('/api/fieldTripSearch/:categoryName', (req, res, next) => {
     select  "field_trips"."fieldTripName",
             "field_trips"."address",
             "field_trips"."city",
+            "field_trips"."description",
             "field_trips"."fieldTripId",
+            "field_trips"."date",
+            "field_trips"."time",
             "categories"."categoryName"
       from  "field_trips"
       join  "field_trips_categories" using ("fieldTripId")
