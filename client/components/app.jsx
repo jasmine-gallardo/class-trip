@@ -66,6 +66,20 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  addUserCourse(userCourse) {
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userCourse)
+    };
+    fetch('/api/users_courses', req)
+      .then(res => res.json())
+      .then(enrolledCourse => {
+        this.setState({ allCourses: this.state.allCourses.concat(enrolledCourse) });
+      })
+      .catch(err => console.error(err));
+  }
+
   addFieldTrip(newFieldTrip) {
     const req = {
       method: 'POST',

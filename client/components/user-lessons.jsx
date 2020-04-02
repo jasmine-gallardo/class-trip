@@ -3,17 +3,12 @@ import LessonButton from './lesson-button';
 
 export default class UserLessons extends React.Component {
 
-  addCourse(user, course) {
-    const req = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' }
-    };
-    fetch(`/api/users_courses/${user}/${course}`, req)
-      .then(res => res.json());
-  }
-
   handleClick() {
-    this.addCourse(this.props.userId, this.props.courseId);
+    const userCourse = {
+      userId: this.props.userId,
+      courseId: this.props.courseId
+    };
+    this.props.addUserCourse(userCourse);
     this.props.setView('myCourses');
   }
 
@@ -26,7 +21,8 @@ export default class UserLessons extends React.Component {
         <div className="d-flex flex-column justify-content-center">
           <button
             onClick={() => this.handleClick()}
-            className="btn btn-lg text-light btn-warning mx-5 mb-4">Add Course
+            className="btn btn-lg text-light btn-warning mx-5 mb-4">
+              Add Course
           </button>
           {
             this.props.lessons.map(lesson => {
