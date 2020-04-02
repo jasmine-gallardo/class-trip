@@ -151,8 +151,8 @@ export default class App extends React.Component {
       case 'searchCourses': view =
         <SearchCourses setEnrollment={this.setEnrollment} setLessons={this.setLessons} setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
-      case 'fieldTrips': view =
-        <SearchFieldTrips setView={this.setView} setFieldTrip={this.setFieldTrip} userName={this.state.user.userName} userId={this.state.user.userId} />;
+      case 'searchFieldTrips': view =
+        <SearchFieldTrips setView={this.setView} setFieldTrip={this.setFieldTrip} setBackPage={this.setBackPage} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'myCourses': view =
         <UserCourses setEnrollment={this.setEnrollment} setLessons={this.setLessons} getLessons={this.getLessons} allCourses={this.state.allCourses} setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
