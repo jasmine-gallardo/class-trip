@@ -3,6 +3,15 @@ import LessonButton from './lesson-button';
 
 export default class UserLessons extends React.Component {
 
+  handleClick() {
+    const userCourse = {
+      userId: this.props.userId,
+      courseId: this.props.courseId
+    };
+    this.props.addUserCourse(userCourse);
+    this.props.setView('myCourses');
+  }
+
   render() {
     if (!this.props.lessons[0]) {
       return <p>No lessons found for this course</p>;
@@ -11,7 +20,9 @@ export default class UserLessons extends React.Component {
       return (
         <div className="d-flex flex-column justify-content-center">
           <button
-            className="btn btn-lg text-light btn-warning mx-5 mb-4">Add Course
+            onClick={() => this.handleClick()}
+            className="btn btn-lg text-light btn-warning mx-5 mb-4">
+              Add Course
           </button>
           {
             this.props.lessons.map(lesson => {

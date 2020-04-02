@@ -43,6 +43,7 @@ export default class App extends React.Component {
     this.setBackPage = this.setBackPage.bind(this);
     this.getCourses = this.getCourses.bind(this);
     this.setEnrollment = this.setEnrollment.bind(this);
+    this.addUserCourse = this.addUserCourse.bind(this);
   }
 
   getLessons(courseId) {
@@ -63,6 +64,20 @@ export default class App extends React.Component {
     fetch(`/api/users_courses/${userId}`)
       .then(res => res.json())
       .then(coursesArray => this.setState({ allCourses: coursesArray }))
+      .catch(err => console.error(err));
+  }
+
+  addUserCourse(userCourse) {
+    const req = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userCourse)
+    };
+    fetch('/api/users_courses', req)
+      .then(res => res.json())
+      .then(enrolledCourse => {
+        this.setState({ allCourses: this.state.allCourses.concat(enrolledCourse) });
+      })
       .catch(err => console.error(err));
   }
 
@@ -158,7 +173,7 @@ export default class App extends React.Component {
         <UserCourses setEnrollment={this.setEnrollment} setLessons={this.setLessons} getLessons={this.getLessons} allCourses={this.state.allCourses} setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'myLessons': view =
-        <UserLessons enrollment={this.state.enrollment} setView={this.setView} setLessonId={this.setLessonId} lessons={this.state.lessons} courseId={this.state.course.courseId} userId={this.state.user.userId}/>;
+        <UserLessons addUserCourse={this.addUserCourse} enrollment={this.state.enrollment} setView={this.setView} setLessonId={this.setLessonId} lessons={this.state.lessons} courseId={this.state.course.courseId} userId={this.state.user.userId}/>;
         break;
       case 'myFieldTrips': view =
        <UserFieldTrips setView={this.setView} setBackPage={this.setBackPage} getFieldTrips={this.getFieldTrips} setFieldTrip={this.setFieldTrip} fieldTrips={this.state.allFieldTrips} userName={this.state.user.userName} userId={this.state.user.userId}/>;
