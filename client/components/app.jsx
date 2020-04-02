@@ -176,7 +176,7 @@ export default class App extends React.Component {
         <GeneralSearch setView={this.setView}/>;
         break;
       case 'fieldTripDetails': view =
-        <FieldTripDetails setView={this.setView} fieldTripId={this.state.fieldTrip.fieldTripId}/>;
+        <FieldTripDetails setView={this.setView} setFieldTrip={this.setFieldTrip} fieldTripId={this.state.fieldTrip.fieldTripId}/>;
     }
     return (
       <div>
