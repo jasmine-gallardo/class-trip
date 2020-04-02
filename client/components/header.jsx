@@ -59,9 +59,12 @@ export default class Header extends React.Component {
         );
       case 'editFieldTrip':
         return (
-          <div className="w-70 m-auto p-2 d-flex justify-content-center justify-content-between">
-            <i className="fas fa-edit fa-3x mr-3"></i>
-            <p className="h2"> Edit Field Trip</p>
+          <div className="w-100 row m-auto pl-2 pr-4 d-flex justify-content-center justify-content-between">
+            <div onClick={() => this.props.setView('fieldTripDetails')}>
+              <i
+                className="fas fa-angle-left fa-3x m-auto pl-3 col-2"></i>
+            </div>
+            <p className="h4 work-sans m-auto col-6 pl-0 pr-1"> Edit Field Trip</p>
           </div>
         );
       case 'myLessons':
