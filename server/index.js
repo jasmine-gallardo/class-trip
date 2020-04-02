@@ -48,13 +48,17 @@ app.get('/api/fieldTrips/:fieldTripId', (req, res, next) => {
   }
 
   const sql = `
-    select "fieldTripName",
-           "date",
-           "description",
-           "address",
-           "city",
-           "time"
+    select "field_trips"."fieldTripName",
+           "field_trips"."date",
+           "field_trips"."description",
+           "field_trips"."address",
+           "field_trips"."city",
+           "field_trips"."time",
+           "field_trips_categories"."categoryId",
+           "categories"."categoryName"
     from "field_trips"
+    join "field_trips_categories" using ("fieldTripId")
+    join "categories" using ("categoryId")
     where "fieldTripId" = $1
   `;
 
@@ -74,11 +78,16 @@ app.get('/api/fieldTrips/:fieldTripId', (req, res, next) => {
 });
 
 // GET - Search Field Trips - by Category
-app.get('/api/fieldTrips/category', (req, res, next) => {
-  const categoryName = req.body.categoryName;
+app.get('/api/fieldTripSearch/:categoryName', (req, res, next) => {
+  const categoryName = req.params.categoryName;
   const sql = `
     select  "field_trips"."fieldTripName",
             "field_trips"."address",
+            "field_trips"."city",
+            "field_trips"."description",
+            "field_trips"."fieldTripId",
+            "field_trips"."date",
+            "field_trips"."time",
             "categories"."categoryName"
       from  "field_trips"
       join  "field_trips_categories" using ("fieldTripId")
@@ -89,11 +98,15 @@ app.get('/api/fieldTrips/category', (req, res, next) => {
   db.query(sql, value)
     .then(result => {
       if (!result.rows[0]) {
-        return res.status(404).json({
-          error: 'Field Trips not found'
+        return res.json({
+          error: 'Courses not found',
+          fieldTrips: []
         });
       } else {
-        return res.json(result.rows);
+        return res.json({
+          error: null,
+          fieldTrips: result.rows
+        });
       }
     })
     .catch(err => next(err));
@@ -148,7 +161,7 @@ app.delete('/api/fieldTrips/:fieldTripId', (req, res, next) => {
 });
 
 // PUT - Edit Field Trip
-app.put('/api/fieldTrips/:fieldTripId', (req, res, next) => {
+app.put('/api/editFieldTrips/:fieldTripId', (req, res, next) => {
   const fT = req.body;
   const fTId = req.params.fieldTripId;
   if (!parseInt(fTId, 10) || !fT.fieldTripName || !fT.address || !fT.city || !fT.date || !fT.time || !fT.description) {

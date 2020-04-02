@@ -9,6 +9,13 @@ export default class Header extends React.Component {
         return (
           <p className="work-sans h2">ClassTrip</p>
         );
+      case 'generalSearch':
+        return (
+          <div className="w-70 m-auto p-2 d-flex justify-content-center justify-content-between">
+            <i className="fas fa-search fa-2x mr-3"></i>
+            <p className="h3 work-sans mb-0"> Search</p>
+          </div>
+        );
       case 'searchCourses':
         return (
           <div className="w-100 m-auto p-2 d-flex justify-content-center justify-content-between">
@@ -17,7 +24,16 @@ export default class Header extends React.Component {
                 className="fas fa-angle-left fa-3x m-auto pl-3 col-2"></i>
             </div>
             <p className="h4 work-sans m-auto col-10"> Search for Courses</p>
-
+          </div>
+        );
+      case 'searchFieldTrips':
+        return (
+          <div className="w-100 m-auto p-2 d-flex justify-content-center justify-content-between">
+            <div onClick={() => this.props.setView('generalSearch')}>
+              <i
+                className="fas fa-angle-left fa-3x m-auto pl-3 col-2"></i>
+            </div>
+            <p className="h4 work-sans m-auto col-10"> Search for Field Trips</p>
           </div>
         );
       case 'myCourses':
@@ -41,6 +57,16 @@ export default class Header extends React.Component {
             <p className="h4 work-sans mb-0"> Plan Field Trip</p>
           </div>
         );
+      case 'editFieldTrip':
+        return (
+          <div className="w-100 row m-auto pl-2 pr-4 d-flex justify-content-center justify-content-between">
+            <div onClick={() => this.props.setView('fieldTripDetails')}>
+              <i
+                className="fas fa-angle-left fa-3x m-auto pl-3 col-2"></i>
+            </div>
+            <p className="h4 work-sans m-auto col-6 pl-0 pr-1"> Edit Field Trip</p>
+          </div>
+        );
       case 'myLessons':
         return (
           <div className="w-100 m-auto p-2 d-flex justify-content-center justify-content-between row">
@@ -59,6 +85,16 @@ export default class Header extends React.Component {
                 className="fas fa-angle-left fa-3x m-auto pl-3 col-2"></i>
             </div>
             <p className="h4 work-sans m-auto col-6"> Details</p>
+          </div>
+        );
+      case 'fieldTripDetails':
+        return (
+          <div className="w-100 row m-auto p-2 d-flex justify-content-center justify-content-between">
+            <div onClick={() => this.props.setView(this.props.backPage)}>
+              <i
+                className="fas fa-angle-left fa-3x m-auto pl-3 col-2"></i>
+            </div>
+            <p className="h4 work-sans m-auto col-6">Details</p>
           </div>
         );
     }

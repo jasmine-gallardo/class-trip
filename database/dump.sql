@@ -145,8 +145,8 @@ CREATE TABLE public.field_trips (
     description text NOT NULL,
     address text NOT NULL,
     city text NOT NULL,
-    date date NOT NULL,
-    "time" time with time zone NOT NULL
+    date text NOT NULL,
+    "time" text NOT NULL
 );
 
 
@@ -329,9 +329,9 @@ COPY public.courses ("courseId", name, "categoryId", description) FROM stdin;
 --
 
 COPY public.field_trips ("fieldTripId", "fieldTripName", description, address, city, date, "time") FROM stdin;
-1	Trivia Night / Study Group	Let's study for the Film 101 exam with a trivia night! Test your knowledge. Take lots of notes. And haaaave fun!	2930 Bristol St b102	Costa Mesa	2020-04-04	18:00:00+00
-2	Rooftop Film Festival	Enjoy a 12-hour festival of our favorite Sci-Fi films. BYOB and BYOC - Bring your own chair!	305 E 4th St #100	Santa Ana	2020-06-21	11:00:00+00
-18	Wine + Painting	Paint w/ Wine!	123 Main St.	Irvine	2020-04-04	12:00:00+00
+2	Rooftop Film Festival	Enjoy a 12-hour festival of our favorite Sci-Fi films. BYOB and BYOC - Bring your own chair!	305 E 4th St #100	Santa Ana	06/21/20	11:00am
+18	Wine + Painting	Paint w/ Wine!	123 Main St.	Irvine	04/04/20	8:00pm
+1	Trivia Night / Study Group	Let's study for the Film 101 exam with a trivia night! Test your knowledge. Take lots of notes. And haaaave fun!	2930 Bristol St b102	Costa Mesa	04/04/20	7:00pm
 \.
 
 
@@ -499,3 +499,4 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
+

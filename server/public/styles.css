@@ -24,15 +24,15 @@ header {
    text-overflow: ellipsis;
    display: -webkit-box;
    -webkit-box-orient: vertical;
-   -webkit-line-clamp: 2; /* number of lines to show */
+   -webkit-line-clamp: 2;
 }
 
-/* #clear-select {
-  border: #EE6963 solid 1px;
-  background-color: #EE6963;
-  border-radius: 20px;
-  color: white;
-} */
+/* Search Field Trips */
+.shorten {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* Global Styling */
 .open-sans {

@@ -1,13 +1,13 @@
 import React from 'react';
 
-export default class FieldTripForm extends React.Component {
+export default class EditFieldTrip extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       fieldTripName: '',
       address: '',
       city: '',
-      category: '',
+      category: { categoryId: null, categoryName: '' },
       date: '',
       time: '',
       description: ''
@@ -23,13 +23,33 @@ export default class FieldTripForm extends React.Component {
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
   }
 
+  componentDidMount() {
+    this.getUpdateFieldTrip(this.props.fieldTripId);
+  }
+
+  getUpdateFieldTrip(fieldTripId) {
+    fetch(`/api/fieldTrips/${fieldTripId}`)
+      .then(res => res.json())
+      .then(fieldTrip =>
+        this.setState({
+          fieldTripName: fieldTrip.fieldTripName,
+          address: fieldTrip.address,
+          city: fieldTrip.city,
+          category: { categoryId: fieldTrip.categoryId, categoryName: fieldTrip.categoryName },
+          date: fieldTrip.date,
+          time: fieldTrip.time,
+          description: fieldTrip.description
+        }))
+      .catch(err => console.error(err));
+  }
+
   handleSubmit(event) {
     event.preventDefault();
-    const newFieldTrip = {
-      name: this.state.fieldTripName,
+    const updatedFieldTrip = {
+      fieldTripName: this.state.fieldTripName,
       address: this.state.address,
       city: this.state.city,
-      categoryId: this.state.category,
+      categoryId: this.state.category.categoryId,
       date: this.state.date,
       time: this.state.time,
       description: this.state.description,
@@ -37,7 +57,7 @@ export default class FieldTripForm extends React.Component {
     };
     const userName = this.props.user.userName;
     const userId = this.props.user.userId;
-    this.props.addFieldTrip(newFieldTrip);
+    this.props.updateFieldTrip(updatedFieldTrip, this.props.fieldTripId);
     this.handleReset(event);
     this.props.setView('myFieldTrips', userName, userId);
   }
@@ -48,7 +68,7 @@ export default class FieldTripForm extends React.Component {
       fieldTripName: '',
       address: '',
       city: '',
-      category: '',
+      category: { categoryId: null, categoryName: '' },
       date: '',
       time: '',
       description: ''
@@ -68,7 +88,7 @@ export default class FieldTripForm extends React.Component {
   }
 
   handleChangeCategory(event) {
-    this.setState({ category: event.target.value });
+    this.setState({ category: { categoryId: event.target.value } });
   }
 
   handleChangeDate(event) {
@@ -85,13 +105,14 @@ export default class FieldTripForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} onReset={this.handleReset}>
+      <form onSubmit={this.handleSubmit} onReset={this.handleReset} autoComplete="off">
         <div className="input-group-lg mb-2">
           <label className="d-block" htmlFor="fieldTripName">Name your field trip.</label>
           <input
             onChange={this.handleChangeFTName}
             className="form-control"
             type="text"
+            value={this.state.fieldTripName}
             id="fieldTripName"
             required/>
         </div>
@@ -101,6 +122,7 @@ export default class FieldTripForm extends React.Component {
             onChange={this.handleChangeAddress}
             className="form-control"
             type="text"
+            value={this.state.address}
             id="address"
             required/>
         </div>
@@ -110,13 +132,14 @@ export default class FieldTripForm extends React.Component {
             onChange={this.handleChangeCity}
             className="form-control"
             type="text"
+            value={this.state.city}
             id="city"
             required/>
         </div>
         <div className="input-group-lg mb-4">
           <label className="d-block" htmlFor="category">Category</label>
           <select required onChange={this.handleChangeCategory} className="form-control" name="category" id="category">
-            <option value="">Please choose an option &#9660;</option>
+            <option value={this.state.category.categoryId}>{this.state.category.categoryName} &#9660;</option>
             <option value="1">Film</option>
             <option value="2">Art</option>
             <option value="3">Wellness</option>
@@ -124,10 +147,10 @@ export default class FieldTripForm extends React.Component {
         </div>
         <div className="d-flex input-group-lg mb-4">
           <label htmlFor="date"></label>
-          <input required onChange={this.handleChangeDate} className="form-control w-50 ml-2 mr-2" type="text" name="date" id="date" placeholder="dd/mm/yy"/>
+          <input required onChange={this.handleChangeDate} value={this.state.date} className="form-control w-50 ml-2 mr-2" type="text" name="date" id="date" />
           <label htmlFor="time"></label>
           <select required onChange={this.handleChangeTime} className="form-control w-50" name="time" id="time">
-            <option value="">Time &#9660;</option>
+            <option value={this.state.time}> {this.state.time} &#9660;</option>
             <option value="12:00am">12:00am</option>
             <option value="1:00am">1:00am</option>
             <option value="2:00am">2:00am</option>
@@ -155,10 +178,10 @@ export default class FieldTripForm extends React.Component {
           </select>
         </div>
         <div className="input-group-lg mb-3">
-          <textarea required onChange={this.handleChangeDescription} className="form-control" aria-label="With textarea" placeholder="Describe your field trip"></textarea>
+          <textarea required onChange={this.handleChangeDescription} value={this.state.description} className="form-control" aria-label="With textarea" placeholder="Describe your field trip"></textarea>
         </div>
         <div className="text-center">
-          <button className="btn btn-lg btn-info" type="submit">Add Field Trip</button>
+          <button className="btn btn-lg btn-info" type="submit">Update</button>
         </div>
       </form>
     );
