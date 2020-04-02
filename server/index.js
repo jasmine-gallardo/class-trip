@@ -366,7 +366,7 @@ app.post('/api/users_courses/:userId/:courseId', (req, res, next) => {
   returning *
   `;
   db.query(sql, [parseInt(req.params.userId, 10), parseInt(req.params.courseId, 10)])
-    .then(result => res.json(result.rows))
+    .then(result => res.status(201).json(result.rows[0]))
     .catch(err => next(err));
 });
 
