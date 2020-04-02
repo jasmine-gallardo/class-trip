@@ -359,14 +359,31 @@ where   "categoryName" = $1
 });
 
 // POST - Take Course
-app.post('/api/users_courses/:userId/:courseId', (req, res, next) => {
+app.post('/api/users_courses', (req, res, next) => {
+
   const sql = `
   insert into "users_courses" ("userId", "courseId")
   values ($1, $2)
   returning *
   `;
-  db.query(sql, [parseInt(req.params.userId, 10), parseInt(req.params.courseId, 10)])
+  db.query(sql, [req.body.userId, req.body.courseId])
     .then(result => res.status(201).json(result.rows[0]))
+    // .then(confirmation => {
+
+    //   const sql = `
+    //   select "courses"."name",
+    //   "courses"."courseId",
+    //   "users_courses"."userId"
+    //   from "courses"
+    //   join "users_courses" using("courseId")
+    //   where "users_courses"."userId" = $1 AND "users_courses"."courseId" = $2
+    //   `;
+    //   db.query(sql, [confirmation.userId, confirmation.courseId])
+    //     .then(result => {
+    //       //return this result to the front end
+    //       return res.json(result.rows)
+    //     });
+    // })
     .catch(err => next(err));
 });
 
