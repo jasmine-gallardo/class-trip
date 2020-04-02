@@ -380,8 +380,7 @@ app.post('/api/users_courses', (req, res, next) => {
       `;
       db.query(sql, [confirmedData.userId, confirmedData.courseId])
         .then(result => res.status(201).json(result.rows[0]));
-    }
-    )
+    })
     .catch(err => next(err));
 });
 
