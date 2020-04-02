@@ -19,6 +19,15 @@ export default class LessonDetails extends React.Component {
       .catch(err => console.error(err));
   }
 
+  handleClick() {
+    const userCourse = {
+      userId: this.props.userId,
+      courseId: this.props.courseId
+    };
+    this.props.addUserCourse(userCourse);
+    this.props.setView('myCourses');
+  }
+
   render() {
     if (!this.props.enrollment) {
       return (
@@ -28,6 +37,7 @@ export default class LessonDetails extends React.Component {
             <p className="mb-5 lead text-secondary text-center ">You must be enrolled in the course to view this lesson.</p>
             <div className="text-center">
               <button
+                onClick={() => this.handleClick()}
                 className="btn btn-lg text-light btn-warning">Add Course
               </button>
             </div>
