@@ -15,10 +15,10 @@ export default class LessonButton extends React.Component {
     const lessonName = this.props.name;
     const lessonId = this.props.lessonId;
     return (
-      <div className="col-12 card p-3 mb-2 bg-light shadow-sm">
+      <div className="col-12 card p-3 mb-2 bg-info shadow-sm">
         <div className="row my-auto">
           <div className="col-9 py-3 pl-4">
-            <div className="h4 open-sans mb-0 text-info">
+            <div className="h4 open-sans mb-0 text-light">
               {lessonName}
             </div>
           </div>
