@@ -28,6 +28,8 @@ export default class UserFieldTrips extends React.Component {
                 address={fieldTrip.address}
                 city={fieldTrip.city}
                 setFieldTrip={this.props.setFieldTrip}
+                setBackPage={this.props.setBackPage}
+                currentPage={'myFieldTrips'}
               />
             );
           })

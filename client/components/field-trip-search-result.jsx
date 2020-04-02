@@ -1,7 +1,19 @@
 import React from 'react';
 
 export default class FieldTripSearchResult extends React.Component {
+  constructor(props) {
+    super(props);
+    this.setNextPage = this.setNextPage.bind(this);
+  }
+
+  setNextPage(viewName, fieldTripId, backPage) {
+    this.props.setView(viewName);
+    this.props.setFieldTrip(fieldTripId);
+    this.props.setBackPage(backPage);
+  }
+
   render() {
+    const backPage = this.props.currentPage;
     const fieldTripId = this.props.fieldTripId;
     const fieldTripName = this.props.name;
     const fieldTripDate = this.props.date;
@@ -25,7 +37,7 @@ export default class FieldTripSearchResult extends React.Component {
           </div>
           <div className="d-flex flex-wrap align-items-center">
             <button
-
+              onClick={() => this.setNextPage('fieldTripDetails', fieldTripId, backPage)}
               type="button" className="btn btn-dark my-1 "> INFO </button>
           </div>
         </div>

@@ -35,7 +35,7 @@ export default function GeneralSearch(props) {
             </div>
             <div className="d-flex flex-wrap align-items-center col-3">
               <button
-                onClick={() => props.setView('fieldTrips')}
+                onClick={() => props.setView('searchFieldTrips')}
                 type="button" className="btn btn-dark my-1">&gt;</button>
             </div>
           </div>

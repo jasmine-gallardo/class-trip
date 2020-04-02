@@ -95,6 +95,9 @@ export default class SearchFieldTrips extends React.Component {
               userId={this.props.userId}
               setView={this.props.setView}
               setCourse={this.props.setCourse}
+              setFieldTrip={this.props.setFieldTrip}
+              setBackPage={this.props.setBackPage}
+              currentPage={'searchFieldTrips'}
             />
           );
         })}

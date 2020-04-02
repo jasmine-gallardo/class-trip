@@ -151,8 +151,8 @@ export default class App extends React.Component {
       case 'searchCourses': view =
         <SearchCourses setEnrollment={this.setEnrollment} setLessons={this.setLessons} setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
-      case 'fieldTrips': view =
-        <SearchFieldTrips setView={this.setView} setFieldTrip={this.setFieldTrip} userName={this.state.user.userName} userId={this.state.user.userId} />;
+      case 'searchFieldTrips': view =
+        <SearchFieldTrips setView={this.setView} setFieldTrip={this.setFieldTrip} setBackPage={this.setBackPage} userName={this.state.user.userName} userId={this.state.user.userId} />;
         break;
       case 'myCourses': view =
         <UserCourses setEnrollment={this.setEnrollment} setLessons={this.setLessons} getLessons={this.getLessons} allCourses={this.state.allCourses} setBackPage={this.setBackPage} setView={this.setView} setCourse={this.setCourse} userName={this.state.user.userName} userId={this.state.user.userId} />;
@@ -161,7 +161,7 @@ export default class App extends React.Component {
         <UserLessons enrollment={this.state.enrollment} setView={this.setView} setLessonId={this.setLessonId} lessons={this.state.lessons} courseId={this.state.course.courseId} userId={this.state.user.userId}/>;
         break;
       case 'myFieldTrips': view =
-       <UserFieldTrips setView={this.setView} getFieldTrips={this.getFieldTrips} setFieldTrip={this.setFieldTrip} fieldTrips={this.state.allFieldTrips} userName={this.state.user.userName} userId={this.state.user.userId}/>;
+       <UserFieldTrips setView={this.setView} setBackPage={this.setBackPage} getFieldTrips={this.getFieldTrips} setFieldTrip={this.setFieldTrip} fieldTrips={this.state.allFieldTrips} userName={this.state.user.userName} userId={this.state.user.userId}/>;
         break;
       case 'planFieldTrip': view =
         <FieldTripForm setView={this.setView} addFieldTrip={this.addFieldTrip} user={this.state.user}/>;
@@ -176,7 +176,7 @@ export default class App extends React.Component {
         <GeneralSearch setView={this.setView}/>;
         break;
       case 'fieldTripDetails': view =
-        <FieldTripDetails setView={this.setView} fieldTripId={this.state.fieldTrip.fieldTripId}/>;
+        <FieldTripDetails setView={this.setView} setFieldTrip={this.setFieldTrip} fieldTripId={this.state.fieldTrip.fieldTripId}/>;
     }
     return (
       <div>
