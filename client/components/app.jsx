@@ -13,7 +13,6 @@ import Navbar from './navbar';
 import GeneralSearch from './general-search';
 import FieldTripDetails from './field-trips-details';
 import SearchFieldTrips from './search-field-trips-category';
-// import SearchFieldTripsCity from './search-field-trips-city'
 
 export default class App extends React.Component {
   constructor(props) {
