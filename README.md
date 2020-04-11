@@ -61,7 +61,7 @@ createdb classTrip
 npm run db:import
 ```
 
-6. Access the classTrip Postgresql database server using pgweb in your default web browser.
+6. Access the classTrip PostgreSQL database server using pgweb in your default web browser.
 ```shell
 pgweb --db=classTrip
 ```
